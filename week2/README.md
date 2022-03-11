@@ -1,7 +1,8 @@
 # 2주차
 ## 인스타그램 로그인, 메인 페이지 퍼블리싱
 ### 참고자료
-- 추가 예정
+- https://developer.mozilla.org/ko/docs/Web/CSS/Media_Queries/Using_media_queries  
+- https://blog.naver.com/pcgun70/222158760340  
 ---
 ### Features
 #### <로그인 페이지 구현>
