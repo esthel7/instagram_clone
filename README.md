@@ -22,7 +22,7 @@ $ git checkout 브랜치명(자신의 이름)
  # Assignment
 주차 | 내용 
 --------|-----------
-[2주차](https://github.com/Open-Year-Round-2022/assignment/blob/main/week2/README.md)|인스타그램 로그인, 메인 페이지 퍼블리싱
-3주차|백엔드 설계( 로그인, 메인 페이지 라우팅 및 연결 )
+[2주차](https://github.com/Open-Year-Round-2022/assignment/blob/main/week2)|인스타그램 로그인, 메인 페이지 퍼블리싱
+[3주차](https://github.com/Open-Year-Round-2022/assignment/blob/main/week3)|백엔드 설계( 로그인, 메인 페이지 라우팅 및 연결 )
 4주차|기능 추가1(댓글, 반복문으로 피드 생성, 좋아요 수 구현), DB 설계( 로그인, 로그아웃, 게시글-사진, 댓글, 좋아요 등 정보 포함)
 5주차|기능 추가2(로그인/로그아웃, DB에 저장된 정보 뿌리기)
