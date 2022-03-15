@@ -1,0 +1,138 @@
+body{
+    background-color:whitesmoke;
+}
+#up_group{
+    position:fixed; /*항상 고정된 위치에*/
+    top:0; /*top 0해줘야 위에 들뜨지 않고 고정됨*/
+    border:hidden;
+    border-bottom: solid 2px gainsboro;
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    background-color:white;
+    width:100%; /*화면에 항상 꽉 차게*/
+}
+#post_group{
+    margin-top:60px;
+    border:hidden;
+    display:grid;
+    grid-template-columns: 3fr 2fr;
+}
+.left{
+    margin-left:30%;
+}
+.right{
+    position:fixed;
+    left:60%
+}
+.right table{ /*class right 속 table 태그에 관해*/
+    z-index:1;
+}
+.search{
+    border:2px solid whitesmoke;
+    border-radius:5px; /*둥근 상자*/
+    background-color: whitesmoke;
+    color:gray;
+    width:300px;
+    height:25px;
+    margin:auto; /*중앙정렬*/
+    margin-top:5px;
+    padding-top:2px;
+    align-self: center;
+}
+.icon{
+    margin:0px 8px;
+}
+.icon_below{
+    margin:8px;
+}
+.icon_below:hover img{/*class icon_below에서 img태그에 마우스 가져다대면*/
+    filter:opacity(0.3) drop-shadow(0 0 0 lightgray); /*opacity는 투명도 지정 1은 불투명, 0은 투명. 소수점이어야 색변환이 보임*/
+    /*drop-shadow는 x,y,z축에 0을 주어서 같은 위치로 하고, 색은 lightgray로. 그림자를 동일한 위치에 주어 색변환 효과 주기*/
+}
+#group{
+    border:hidden;
+    display:grid;
+    grid-template-columns: 3fr 2fr;
+    height:800px;
+}
+.modal_group:hover img{
+    filter:none;
+}
+.story{
+    border:2px solid gainsboro;
+    width:600px;
+    height:100px;
+    margin:30px auto;
+    background-color:white;
+}
+.post{
+    border:2px solid gainsboro;
+    width:600px;
+    height:875px;
+    margin:auto;
+    background-color:white;
+}
+.modal_wrapper{ /*모달 열렸을 때 모달 제외한 부분, 모달 다 감싸는 부분*/
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center; /*위아래로 이동 display:flex일 경우에*/
+    justify-content: center; /*좌우로 이동 display:flex일 경우에*/
+}
+.modal {
+    background: white;
+    border-radius: 5px;
+    width: 320px;
+}
+.modal_sq{
+    text-align:center;
+    padding:10px;
+    border-bottom:solid lightgray 1px;
+}
+.close{
+    border:none;
+    background-color:white;
+    padding:10px;
+    padding-bottom:15px;
+    font-size:16px;
+}
+.close_wrapper{
+    text-align:center;
+}
+.modal_group{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.modal_comment{
+    background: white;
+    border-radius: 5px;
+    width: 1300px;
+    height:800px;
+}
+.close_comment{
+    border:none;
+    background-color:rgba(0,0,0,0); /*앞 세글자는 색상. 마지막 0은 투명하게 1은 불투명*/
+    color:white;
+    font-size:30px;
+    padding-left:1000%;
+    padding-bottom:3000%;
+}
+.close_group{
+    float:right;
+}
+@media (max-width:1500px) {/*너비가 1500px 보다 작으면 수행*/
+    .right{
+        display:none;
+    }
+  }

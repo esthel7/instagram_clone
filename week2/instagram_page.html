@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Instagram_page</title>
+        <link rel="stylesheet" href="page.css"> <!--css파일 불러오기-->
+        <script>
+            function change(photo, color){
+                if (color=='black'){
+                    photo.src='https://cdn-icons-png.flaticon.com/512/1174/1174447.png';
+
+                }
+                else {
+                    photo.src="https://mblogthumb-phinf.pstatic.net/20140709_176/wsm0030_1404859139443xgQQv_PNG/PicsArt_1404831829726.png?type=w2";
+                    photo.style.height="32px";
+                    //사진 주소 바꾸고 높이 조정
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <!--상단바-->
+        <div id="up_group">
+            <span class="logo" style="text-align:right;">
+                <img src="https://cdn.apple-economy.com/news/photo/201612/30523_15394_5059.png"
+                width="100px" style="margin:8px;">
+            </span>
+            <span class="search"> <!--줄바꿈 되지 않도록-->
+                &nbsp; <!--띄어쓰기-->
+                <img src="https://img.lovepik.com/original_origin_pic/19/01/07/f4d522e5616a84704ba33c88addec54f.png_wh300.png" width="15px">
+                검색
+            </span>
+            <span class="icon_group">
+                <span class="icon">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSe8zT4ZGCgTpHchVLPnyVICcoLAdszys3vTQ&usqp=CAU"
+                    width="25px;" style="margin-top:15px;">
+                </span>
+                <span class="icon">
+                    <img src="https://cdn-icons-png.flaticon.com/512/126/126536.png" width="25px;">
+                </span>
+                <span class="icon">
+                    <img src="https://static.thenounproject.com/png/809337-200.png" width="30px;">
+                </span>
+                <span class="icon">
+                    <img src="https://cdn-icons-png.flaticon.com/512/59/59182.png"
+                    width="25px;">
+                </span>
+                <span class="icon">
+                    <img src="https://e6.pngbyte.com/pngpicture/70665/png-Instagram-Love-Icon-Png-Png-File-Svg-Instagram-Love-Icon-Png
+                    -instagram-icon_thumbnail.png" width="25px;" height="25px;">
+                </span>
+                <span class="icon">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpjxTJFMbOB15q6-wFb2RZz4mA_BHMEXmUmw&usqp=CAU"
+                    width="25px;">
+                </span>
+            </span>
+        </div>
+
+        <!--추천친구-->
+        <div class="right" style="margin:35px 0px;">
+            <table>
+                <tr>
+                    <td>
+                        <img src="https://cdn2.iconfinder.com/data/icons/instagram-outline/19/11-512.png" width="80px">
+                    </td>
+                    <td>
+                        <b>
+                            &nbsp;&nbsp;open.year.round
+                        </b>
+                        <div style="color:gray; padding-right:20px;">
+                            &nbsp;&nbsp;세종대학교 open year round
+                        </div>
+                    </td>
+                    <td>
+                        <span style="float:right; color:rgb(0, 174, 255);">
+                            전환
+                        </span>
+                    </td>
+                </tr>
+            </table>
+            <br>
+            <b style="color:gray; margin-left:10px;">
+                회원님을 위한 추천&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <b style="color:black;">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;모두 보기
+                </b>
+            </b>
+            <div style="height:330px;">
+                <table style="margin-top:10px; position:relative;">
+                    <tr>
+                        <td>
+                            <img src="https://cdn2.iconfinder.com/data/icons/instagram-outline/19/11-512.png" width="60px">
+                        </td>
+                        <td>
+                            <b>
+                                &nbsp;&nbsp;A
+                            </b>
+                            <div style="color:gray; padding-right:70px;">
+                                &nbsp;&nbsp;회원님을 팔로우합니다
+                            </div>
+                        </td>
+                        <td>
+                            <span style="float:right; color:rgb(0, 174, 255);">
+                                팔로우
+                            </span>
+                        </td>
+                    </tr>
+                </table>
+                <table style="position:relative; top:-10px;">
+                    <tr>
+                        <td>
+                            <img src="https://cdn2.iconfinder.com/data/icons/instagram-outline/19/11-512.png" width="60px">
+                        </td>
+                        <td>
+                            <b>
+                                &nbsp;&nbsp;B
+                            </b>
+                            <div style="color:gray; padding-right:70px;">
+                                &nbsp;&nbsp;회원님을 팔로우합니다
+                            </div>
+                        </td>
+                        <td>
+                            <span style="float:right; color:rgb(0, 174, 255);">
+                                팔로우
+                            </span>
+                        </td>
+                    </tr>
+                </table>
+                <table style="position:relative; top:-20px;">
+                    <tr>
+                        <td>
+                            <img src="https://cdn2.iconfinder.com/data/icons/instagram-outline/19/11-512.png" width="60px">
+                        </td>
+                        <td>
+                            <b>
+                                &nbsp;&nbsp;C
+                            </b>
+                            <div style="color:gray; padding-right:70px;">
+                                &nbsp;&nbsp;회원님을 팔로우합니다
+                            </div>
+                        </td>
+                        <td>
+                            <span style="float:right; color:rgb(0, 174, 255);">
+                                팔로우
+                            </span>
+                        </td>
+                    </tr>
+                </table>
+                <table style="position:relative; top:-30px;">
+                    <tr>
+                        <td>
+                            <img src="https://cdn2.iconfinder.com/data/icons/instagram-outline/19/11-512.png" width="60px">
+                        </td>
+                        <td>
+                            <b>
+                                &nbsp;&nbsp;D
+                            </b>
+                            <div style="color:gray; padding-right:70px;">
+                                &nbsp;&nbsp;회원님을 팔로우합니다
+                            </div>
+                        </td>
+                        <td>
+                            <span style="float:right; color:rgb(0, 174, 255);">
+                                팔로우
+                            </span>
+                        </td>
+                    </tr>
+                </table>
+                <table style="position:relative; top:-40px;">
+                    <tr>
+                        <td>
+                            <img src="https://cdn2.iconfinder.com/data/icons/instagram-outline/19/11-512.png" width="60px">
+                        </td>
+                        <td>
+                            <b>
+                                &nbsp;&nbsp;E
+                            </b>
+                            <div style="color:gray; padding-right:70px;">
+                                &nbsp;&nbsp;회원님을 팔로우합니다
+                            </div>
+                        </td>
+                        <td>
+                            <span style="float:right; color:rgb(0, 174, 255);">
+                                팔로우
+                            </span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <br>
+            <div style="color:lightgray; line-height:30px; font-size:15px; margin-left:10px;">
+                소개·도움말·홍보 센터·API·채용 정보·<br>
+                개인정보처리방침·약관·위치·인기 계정·해시태그·<br>
+                언어
+                <br><br>
+                ⓒ 2022 INSTAGRAM FROM META
+            </div>
+        </div>
+
+        <!--스토리 및 게시물-->
+        <div id="post_group">
+            <div class="left">
+                <div class="story">
+                    <img src="https://cdn2.iconfinder.com/data/icons/instagram-outline/19/11-512.png" width="60px" style="margin:5px 0px 0px 20px;">
+                    <div style="margin-left:33px;">
+                        OYR
+                    </div>
+                </div>
+                <div class="post">
+                    <img src="https://cdn2.iconfinder.com/data/icons/instagram-outline/19/11-512.png" width="40px" 
+                    style="margin:7px 10px;float:left;"> <!--float 쓰면 왼쪽에 사진 위치, 오른쪽에 다른 것 위치 가능-->
+                    <span style="display:inline-block; margin:13px 0px; font-size:16px;"> <!--float 써서 글자 가운데 오도록 조정 가능-->
+                        sejong_univ
+                    </span>
+                    
+                    <button class="open" style="float:right; margin:15px; border:none; background-color:white;"> <!--modal창 열 버튼-->
+                        <img src="https://cdn-icons-png.flaticon.com/512/60/60969.png" width="15px;">
+                    </button>
+                    <!--modal-->
+                    <div class="modal_wrapper" style="display:none;">
+                        <div class="modal">
+                            <div class="modal_sq" style="color:red; font-weight:bold;">
+                                신고
+                            </div>
+                            <div class="modal_sq" style="color:red; font-weight:bold;">
+                                팔로우 취소
+                            </div>
+                            <div class="modal_sq">
+                                게시물로 이동
+                            </div>
+                            <div class="modal_sq">
+                                공유 대상...
+                            </div>
+                            <div class="modal_sq">
+                                링크 복사
+                            </div>
+                            <div class="modal_sq">
+                                퍼가기
+                            </div>
+                            <div class="close_wrapper">
+                                <button class="close">취소</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <script src="dot_modal.js"></script> -->
+                    <!--script 태그랑 js파일 맨 아래에 있음-->
+
+                    <img src="https://mblogthumb-phinf.pstatic.net/20160316_188/machsz_1458108041064UOBNl_JPEG/22.jpg?type=w2" 
+                    width="600px;">
+                    <div style="text-align:center;">
+                        <img src="https://kr.seaicons.com/wp-content/uploads/2015/06/Circle-icon.png" width="7px">
+                        <img src="https://m.smartcara.com/web/product/option_button/202105/0862794c02ec7f7e906e98d1cf44f1ea.png" width="6px">
+                        <img src="https://m.smartcara.com/web/product/option_button/202105/0862794c02ec7f7e906e98d1cf44f1ea.png" width="6px">
+                        <img src="https://m.smartcara.com/web/product/option_button/202105/0862794c02ec7f7e906e98d1cf44f1ea.png" width="6px">
+                        <img src="https://m.smartcara.com/web/product/option_button/202105/0862794c02ec7f7e906e98d1cf44f1ea.png" width="6px">
+                        <img src="https://m.smartcara.com/web/product/option_button/202105/0862794c02ec7f7e906e98d1cf44f1ea.png" width="6px">
+                        <img src="https://m.smartcara.com/web/product/option_button/202105/0862794c02ec7f7e906e98d1cf44f1ea.png" width="6px">
+                        <img src="https://m.smartcara.com/web/product/option_button/202105/0862794c02ec7f7e906e98d1cf44f1ea.png" width="6px">
+                    </div>
+
+                    <span class="icon_below icon_click" style="margin-left:16px;">
+                        <img src="https://e6.pngbyte.com/pngpicture/70665/png-Instagram-Love-Icon-Png-Png-File-Svg-Instagram-Love-Icon-Png
+                        -instagram-icon_thumbnail.png" width="30px;" height="30px;" onclick="change(this,'red');"> 
+                    </span>
+                    <span class="icon_below">
+                        <button class="open_comment" style=" border:none; background-color:white;">
+                            <img src="https://cdn-icons-png.flaticon.com/512/2/2043.png" width="30px">
+                        </button>
+                        <div class="modal_group" style="display:none;">
+                            <div class="modal_comment" id="group">
+                                <div class="modal_left" style="float:left;">
+                                    <img src="https://mblogthumb-phinf.pstatic.net/20160316_188/machsz_1458108041064UOBNl_JPEG/22.jpg?type=w2" 
+                                    width="800px" style="border-right:1px solid lightgray; position:relative;">
+                                </div>
+                                <div class="modal_right">
+                                    <span>
+                                        <img src="https://cdn2.iconfinder.com/data/icons/instagram-outline/19/11-512.png" 
+                                        width="60px" style="margin:10px; position:relative;">
+                                        <span style="font-weight:bold; position:relative; top:-35px;">
+                                            sejong_univ · 팔로잉
+                                        </span>
+                                    </span>
+                                    <hr style="position:relative; top:-10px; border: 1px lightgray solid;">
+                                    <div>
+                                        <img src="https://cdn2.iconfinder.com/data/icons/instagram-outline/19/11-512.png" 
+                                        width="60px" style="margin:0px 10px; position:relative;">
+                                        <span style="position:relative; top:-35px;">
+                                            <b>
+                                                sejong_univ
+                                            </b>
+                                            &nbsp;이달의 세종인 : 2월 편
+                                        </span>
+                                    </div>
+                                    <div style="padding-left:85px; position:relative; top:-20px;">
+                                        <div>
+                                            2월에도 참 많은 분들이 세종을 빛내주셨습니다. 
+                                            다양한 분야에서 열심히 자신의 일을 해내시는 세종인들이 정말 자랑스럽습니다! 
+                                            항상 존경하고 응원합니다.
+                                        </div>
+                                        <br>
+                                        <div style="color:navy;">
+                                            #세종대학교 #세종대
+                                        </div>
+                                        <br>
+                                        <div style="color:gray; font-size:14px;">
+                                            44분
+                                        </div>
+                                    </div>
+                                    <div style="position:relative; bottom:-290px;">
+                                        <hr style="border-top: 2px lightgray solid; margin-bottom:20px;">
+                                        <div class="icon">
+                                            <span class="icon_below">
+                                                <img src="https://e6.pngbyte.com/pngpicture/70665/png-Instagram-Love-Icon-Png-Png-File-Svg-
+                                                Instagram-Love-Icon-Png-instagram-icon_thumbnail.png" width="30px;" height="30px;">
+                                            </span>
+                                            <span class="icon_below">
+                                                <img src="https://cdn-icons-png.flaticon.com/512/2/2043.png" width="30px">
+                                            </span>
+                                            <span class="icon_below" style="position:relative">
+                                                <img src="https://cdn-icons-png.flaticon.com/512/126/126536.png" width="30px;">
+                                            </span>
+                                            <span class="icon_below" style="float:right; margin-right:20px;">
+                                                <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" 
+                                                width="25px;" style="position:relative; top:-5px;">
+                                            </span>
+                                        </div>
+                                        <div style="margin:5px 15px; line-height:30px;"> <!--line-height는 줄간격 조정-->
+                                            <strong>
+                                                좋아요 46개
+                                            </strong>
+                                            <div style="font-size:12px; color:gray;">
+                                                44분 전
+                                            </div>
+                                        </div>
+                                        <hr style="border: solid 1px gainsboro; margin:15px 0px;">
+                                        <span style="float:left; margin:0px 15px;">
+                                            <img src="https://cdn.icon-icons.com/icons2/759/PNG/512/smiling-emoticon-face_icon-icons.com_64323.png" 
+                                            width="25px;">
+                                        </span>
+                                        <span style="color:gray;">
+                                            댓글 달기...
+                                        </span>
+                                        <span style="float:right; color:rgb(0, 174, 255); margin-right:15px;">
+                                            게시
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="close_group">
+                                <button class="close_comment">X</button>
+                            </div>
+                        </div>
+                        <!--script는 맨 아래에-->
+                    </span>
+                    <span class="icon_below">
+                        <img src="https://cdn-icons-png.flaticon.com/512/126/126536.png" width="30px;">
+                    </span>
+                    <span class="icon_below icon_click" style="float:right; margin-right:20px;">
+                        <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" width="25px;" onclick="change(this,'black');">
+                    </span>
+                    <div style="margin:0px 15px; line-height:30px;"> <!--line-height는 줄간격 조정-->
+                        <strong>
+                            좋아요 46개
+                            <br> sejong_univ
+                        </strong>
+                        이달의 세종인 : 2월 편 ...
+                        <span style="color:gray;">
+                            더 보기
+                        </span>
+                        <div style="font-size:12px; color:gray;">
+                            44분전
+                        </div>
+                    </div>
+                    <hr style="border: solid 1px gainsboro; margin:15px 0px;">
+                    <span style="float:left; margin:0px 15px;">
+                        <img src="https://cdn.icon-icons.com/icons2/759/PNG/512/smiling-emoticon-face_icon-icons.com_64323.png" width="25px;">
+                    </span>
+                    <span style="color:gray;">
+                        댓글 달기...
+                    </span>
+                    <span style="float:right; color:rgb(0, 174, 255); margin-right:15px;">
+                        게시
+                    </span>
+                </div>
+
+                <!--두번째 게시물-->
+                <div class="post" style="margin-top:30px;">
+                    <img src="https://cdn2.iconfinder.com/data/icons/instagram-outline/19/11-512.png" width="40px" 
+                    style="margin:7px 10px;float:left;"> <!--float 쓰면 왼쪽에 사진 위치, 오른쪽에 다른 것 위치 가능-->
+                    <span style="display:inline-block; margin:13px 0px; font-size:16px;"> <!--float 써서 글자 가운데 오도록 조정 가능-->
+                        sejong_univ
+                    </span>
+                    <span style="float:right; margin:15px; border:none; background-color:white;">
+                        <img src="https://cdn-icons-png.flaticon.com/512/60/60969.png" width="15px;">
+                    </span>
+
+                    <img src="https://i.pinimg.com/originals/29/0c/31/290c3114954bc81010cdd0ca2aa0f0d6.jpg" width="600px;">
+
+                    <div style="text-align:center;">
+                        <img src="https://kr.seaicons.com/wp-content/uploads/2015/06/Circle-icon.png" width="7px">
+                        <img src="https://m.smartcara.com/web/product/option_button/202105/0862794c02ec7f7e906e98d1cf44f1ea.png" width="6px">
+                        <img src="https://m.smartcara.com/web/product/option_button/202105/0862794c02ec7f7e906e98d1cf44f1ea.png" width="6px">
+                        <img src="https://m.smartcara.com/web/product/option_button/202105/0862794c02ec7f7e906e98d1cf44f1ea.png" width="6px">
+                        <img src="https://m.smartcara.com/web/product/option_button/202105/0862794c02ec7f7e906e98d1cf44f1ea.png" width="6px">
+                        <img src="https://m.smartcara.com/web/product/option_button/202105/0862794c02ec7f7e906e98d1cf44f1ea.png" width="6px">
+                        <img src="https://m.smartcara.com/web/product/option_button/202105/0862794c02ec7f7e906e98d1cf44f1ea.png" width="6px">
+                        <img src="https://m.smartcara.com/web/product/option_button/202105/0862794c02ec7f7e906e98d1cf44f1ea.png" width="6px">
+                    </div>
+
+                    <span class="icon_below" style="margin-left:16px;">
+                        <img src="https://e6.pngbyte.com/pngpicture/70665/png-Instagram-Love-Icon-Png-Png-File-Svg-Instagram-Love-Icon-Png
+                        -instagram-icon_thumbnail.png" width="30px;" height="30px;">
+                    </span>
+                    <span class="icon_below">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2/2043.png" width="30px">
+                    </span>
+                    <span class="icon_below">
+                        <img src="https://cdn-icons-png.flaticon.com/512/126/126536.png" width="30px;">
+                    </span>
+                    <span class="icon_below" style="float:right; margin-right:20px;">
+                        <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" width="25px;">
+                    </span>
+                    <div style="margin:0px 15px; line-height:30px;"> <!--line-height는 줄간격 조정-->
+                        <strong>
+                            좋아요 54개
+                            <br> sejong_univ
+                        </strong>
+                        이달의 세종인 : 음식 편 ...
+                        <span style="color:gray;">
+                            더 보기
+                        </span>
+                        <div style="font-size:12px; color:gray;">
+                            50분전
+                        </div>
+                    </div>
+                    <hr style="border: solid 1px gainsboro; margin:15px 0px;">
+                    <span style="float:left; margin:0px 15px;">
+                        <img src="https://cdn.icon-icons.com/icons2/759/PNG/512/smiling-emoticon-face_icon-icons.com_64323.png" width="25px;">
+                    </span>
+                    <span style="color:gray;">
+                        댓글 달기...
+                    </span>
+                    <span style="float:right; color:rgb(0, 174, 255); margin-right:15px;">
+                        게시
+                    </span>
+                </div>
+            </div>
+        </div>
+        <script src="comment_modal.js"></script>
+        <script src="dot_modal.js"></script>
+    </body>
+</html>
