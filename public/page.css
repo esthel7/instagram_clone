@@ -55,9 +55,6 @@ body{
     grid-template-columns: 3fr 2fr;
     height:800px;
 }
-.modal_group:hover img{
-    filter:none;
-}
 .story{
     border:2px solid gainsboro;
     width:600px;
@@ -71,6 +68,25 @@ body{
     height:875px;
     margin:auto;
     background-color:white;
+}
+.comment{
+    color:gray;
+    font-size:15px;
+    border:none;
+}
+.comment_send{
+    border:none;
+    float:right;
+    font-size:15px;
+    color:rgb(0, 174, 255);
+    background-color:white;
+    margin-right:15px;
+}
+.modal_group:hover img{
+    filter:none;
+}
+.modal_group .icon_below:hover img{/*modal_group class에서 icon_below class는 hover 적용*/
+    filter:opacity(0.3) drop-shadow(0 0 0 lightgray);
 }
 .modal_wrapper{ /*모달 열렸을 때 모달 제외한 부분, 모달 다 감싸는 부분*/
     position: fixed;
@@ -113,6 +129,9 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.modal_right{
+    height:490px;
 }
 .modal_comment{
     background: white;

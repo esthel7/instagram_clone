@@ -25,10 +25,19 @@ body{
     color:gray;
 }
 .blue_sq{
-    background-color: skyblue;
+    background-color:skyblue;
     text-align:center;
     margin:20px 30px;
     margin-bottom:35px;
+    border:2px solid lightgray;
+    border-radius:5px;
+}
+.blue_sq input{
+    background-color:skyblue;
+    padding:7px;
+    font-size:18px;
+    color:white;
+    font-weight:bold;
 }
 input{
     width:315px;
