@@ -22,7 +22,7 @@ body{
 }
 .right{
     position:fixed;
-    left:60%
+    left:60%;
 }
 .right table{ /*class right 속 table 태그에 관해*/
     z-index:1;
@@ -60,13 +60,53 @@ body{
     width:600px;
     height:100px;
     margin:30px auto;
+    margin-top:0px;
     background-color:white;
+}
+.user{ /*user 아이콘*/
+    border:none;
+    background-color:white;
+    margin-left:4px;
+}
+.user_modal_wrapper{
+    position:fixed;
+    top:60px;
+    width:100%;
+    height:100%;
+    display:flex;
+    z-index:2; /*맨앞으로 나오도록(제일 위에 있도록)*/
+}
+.user_modal{
+    margin-left:75%;
+    background-color:white;
+    border-radius:1px;
+    width:200px;
+    height:160px;
+}
+.user_modal_sq{
+    font-size:16px;
+    padding:5px;
+    border-left:1px solid lightgray;
+    border-right:1px solid lightgray;
+}
+.close_user{
+    border:none;
+    background-color:white;
+    font-size:15px;
+}
+.close_user_modal{
+    padding:5px;
+    padding-bottom:10px;
+    border:none;
+    background-color:white;
+    border:solid lightgray 1px;
 }
 .post{
     border:2px solid gainsboro;
     width:600px;
     height:875px;
     margin:auto;
+    margin-top:30px;
     background-color:white;
 }
 .comment{

@@ -25,18 +25,18 @@
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm3tVBEiIu9-8yACyXjsiUGt0h02EUaUumVDq6L22_0DwhhHF
                     Tjgm9jay8G_JhBO7pDcE&usqp=CAU"
                     width="50%" style="padding:30px; padding-bottom:10px;">
-                    <form action="/load" method="post"> <!--submit버튼 누르면 해당 주소로 정보 보냄-->
-                                                        <!--index.js에서 사용하려고 action주소 수정-->
+                    <form action="/" method="post"><!--submit버튼 누르면 해당 주소로 정보 보냄-->
+                                                    <!--index.js에서 사용하려고 action주소 수정-->
                         <div class="small_sq">
-                            <input type="text" id="user" placeholder="전화번호, 사용자 이름 또는 이메일" onkeyup="change_login();"> <!--onkeyup은 키보드가 눌리면-->
+                            <input type="text" id="user" name="user" placeholder="전화번호, 사용자 이름 또는 이메일" onkeyup="change_login();"> <!--onkeyup은 키보드가 눌리면-->
                         </div>
                         <div class="small_sq">
-                            <input type="password" id="password" placeholder="비밀번호" onkeyup="change_login();"> <!--placeholder는 입력창에 연하게 쓰여있게-->
+                            <input type="password" id="password" name="password" placeholder="비밀번호" onkeyup="change_login();"> <!--placeholder는 입력창에 연하게 쓰여있게-->
                             <!--type password면 입력할 때 내용 안보이게 입력됨-->
                         </div>
                         <div class="blue_sq">
-                            <input type="submit" value="로그인" id="login" onclick="alert_check(this);"> 
-                            <!--전송버튼. id는 change_login 함수 위해 필요. value는 버튼의 이름--> <!--버튼 클릭할 경우 함수실행-->
+                            <input type="submit" value="로그인" id="login" disabled>
+                            <!--전송버튼. id는 change_login 함수 위해 필요. value는 버튼의 이름 버튼 활성화 막아놓기(disabled)-->
                         </div>
                     </form>
                     <div class="line">

@@ -10,13 +10,3 @@ function change_login(){
         button.disabled=false; //버튼 활성화(클릭할 수 있는 상태(id,pw확인절차 필요))
     }
 }
-
-function alert_check(button){
-    const id=document.getElementById("user");
-    const pw=document.getElementById("password");
-    if(id.value=='esthel@naver.com' && pw.value=='12345'); //id, pw 맞으면 submit(페이지 이동) 진행
-    else {
-        alert('Wrong Access');//경고창 출력
-        button.disabled=true;//버튼 비활성화(클릭 안되는 상태)
-    }
-}

@@ -1,3 +1,4 @@
+<!--.ejs 파일은 항상 'views'폴더 아래에 있기. html과 형식 똑같음. 단, html과 달리 서버내용을 작성할 수 있음-->
 <!DOCTYPE html>
 <html>
     <head>
@@ -6,7 +7,9 @@
         <link rel="stylesheet" href="/page.css"> <!--css파일 불러오기 index.js에서 사용하려고 page앞에 / 붙여줌-->
         <!--모달창 실행위한 js파일 body태그 아래에 있음-->>
     </head>
-    <body>
+    <body onload="pass('<%=photo1%>','<%=contents1%>','<%=long_contents1%>','<%=like_num1%>','<%=time1%>','<%=photo2%>','<%=contents2%>','<%=long_contents2%>','<%=like_num2%>','<%=time2%>');"> 
+    <!--onload 함수는 js에서 가장 늦게 실행되는 함수. index.js의 mysql정보 전달위해 선언-->
+
         <!--상단바-->
         <div id="up_group">
             <span class="logo" style="text-align:right;">
@@ -27,7 +30,7 @@
                     <img src="https://cdn-icons-png.flaticon.com/512/126/126536.png" width="25px;">
                 </span>
                 <span class="icon">
-                    <img src="https://static.thenounproject.com/png/809337-200.png" width="30px;">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3487/3487486.png" width="25px;">
                 </span>
                 <span class="icon">
                     <img src="https://cdn-icons-png.flaticon.com/512/59/59182.png"
@@ -37,15 +40,42 @@
                     <img src="https://png.pngitem.com/pimgs/s/111-1119299_black-hollow-heart-icon-hd-png-download.png"
                      width="25px;" height="25px;">
                 </span>
-                <span class="icon">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpjxTJFMbOB15q6-wFb2RZz4mA_BHMEXmUmw&usqp=CAU"
-                    width="25px;">
-                </span>
+                <button class="icon user">
+                    <!--해당 이미지를 mysql 연동해서 바꾸기-->
+                    <img src="<%=user%>" width="25px;"> <!--'%=user%'는 index.js에서 보낸 자료-->
+                </button>
             </span>
         </div>
 
-        <!--추천친구-->
-        <div class="right" style="margin:35px 0px;">
+        <!--user modal 로그인 로그아웃-->
+        <div class="user_modal_wrapper" style="display:none;">
+            <div class="user_modal">
+                <div class="user_modal_sq" style="border-top:1px solid lightgray;">
+                    <img src="https://cdn2.iconfinder.com/data/icons/instagram-outline/19/11-512.png" width="22px" 
+                    style="display:inline-block;">
+                    프로필
+                </div>
+                <div class="user_modal_sq">
+                    <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" width="15px;" style="display:inline-block; margin-left:2px;">
+                    &nbsp;저장됨
+                </div>
+                <div class="user_modal_sq">
+                    <img src="https://w7.pngwing.com/pngs/385/968/png-transparent-computer-icons-installation-icon-setting-cdr-white-black.png"
+                    width="15px" style="display:inline-block; margin-left:2px;">
+                    &nbsp;설정
+                </div>
+                <div class="user_modal_sq">
+                    <img src="http://cdn.onlinewebfonts.com/svg/img_411213.png" width="15px" style="display:inline-block; margin-left:2px;">
+                    &nbsp;계정 전환
+                </div>
+                <div class="close_user_modal">
+                    <button class="close_user">&nbsp;로그아웃</button>
+                </div>
+            </div>
+        </div>
+
+        <!--추천친구--> 
+        <div class="right" style="margin:60px 0px;">
             <table>
                 <tr>
                     <td>
@@ -188,12 +218,14 @@
         <!--스토리 및 게시물-->
         <div id="post_group">
             <div class="left">
+                <!--스토리-->
                 <div class="story">
                     <img src="https://cdn2.iconfinder.com/data/icons/instagram-outline/19/11-512.png" width="60px" style="margin:5px 0px 0px 20px;">
                     <div style="margin-left:33px;">
                         OYR
                     </div>
                 </div>
+                <!--첫번째 게시물-->
                 <div class="post">
                     <img src="https://cdn2.iconfinder.com/data/icons/instagram-outline/19/11-512.png" width="40px" 
                     style="margin:7px 10px;float:left;"> <!--float 쓰면 왼쪽에 사진 위치, 오른쪽에 다른 것 위치 가능-->
@@ -201,10 +233,10 @@
                         sejong_univ
                     </span>
                     
-                    <button class="open" style="float:right; margin:15px; border:none; background-color:white;"> <!--modal창 열 버튼-->
+                    <button class="open" style="float:right; margin:15px; border:none; background-color:white;" onclick="dot_modal(0);"> <!--modal창 열 버튼-->
                         <img src="https://cdn-icons-png.flaticon.com/512/60/60969.png" width="15px;">
                     </button>
-                    <!--modal-->
+                    <!--dot modal-->
                     <div class="modal_wrapper" style="display:none;">
                         <div class="modal">
                             <div class="modal_sq" style="color:red; font-weight:bold;">
@@ -232,8 +264,8 @@
                     </div>
                     <!--script 태그랑 js파일 맨 아래에 있음-->
 
-                    <img src="https://mblogthumb-phinf.pstatic.net/20160316_188/machsz_1458108041064UOBNl_JPEG/22.jpg?type=w2" 
-                    width="600px;">
+                    <!--photo change-->
+                    <img src="<%=photo0%>" width="600px;">
                     <div style="text-align:center;">
                         <img src="https://kr.seaicons.com/wp-content/uploads/2015/06/Circle-icon.png" width="7px">
                         <img src="https://m.smartcara.com/web/product/option_button/202105/0862794c02ec7f7e906e98d1cf44f1ea.png" width="6px">
@@ -247,17 +279,17 @@
 
                     <span class="icon_below icon_click" style="margin-left:16px;">
                         <img src="https://png.pngitem.com/pimgs/s/111-1119299_black-hollow-heart-icon-hd-png-download.png"
-                         width="30px;" height="30px;" onclick="change(this);">
+                        width="30px;" height="30px;" onclick="change(this,1);">
                     </span>
                     <span class="icon_below">
-                        <button class="open_comment" style=" border:none; background-color:white;">
+                        <button class="open_comment" style=" border:none; background-color:white;" onclick="comment_modal(0);">
                             <img src="https://cdn-icons-png.flaticon.com/512/2/2043.png" width="30px">
                         </button>
                         <div class="modal_group" style="display:none;">
                             <div class="modal_comment" id="group">
                                 <div class="modal_left" style="float:left;">
-                                    <img src="https://mblogthumb-phinf.pstatic.net/20160316_188/machsz_1458108041064UOBNl_JPEG/22.jpg?type=w2" 
-                                    width="800px" style="border-right:1px solid lightgray; position:relative;">
+                                    <!--photo change-->
+                                    <img src="<%=photo0%>" width="800px" style="border-right:1px solid lightgray; position:relative;">
                                 </div>
                                 <div>
                                     <span>
@@ -276,14 +308,12 @@
                                                 <b>
                                                     sejong_univ
                                                 </b>
-                                                &nbsp;이달의 세종인 : 2월 편
+                                                &nbsp;<%=contents0%>
                                             </span>
                                         </div>
                                         <div style="padding-left:85px; position:relative; top:-20px;">
                                             <div>
-                                                2월에도 참 많은 분들이 세종을 빛내주셨습니다. 
-                                                다양한 분야에서 열심히 자신의 일을 해내시는 세종인들이 정말 자랑스럽습니다! 
-                                                항상 존경하고 응원합니다.
+                                                <%=long_contents0%>
                                             </div>
                                             <br>
                                             <div style="color:navy;">
@@ -291,7 +321,7 @@
                                             </div>
                                             <br>
                                             <div style="color:gray; font-size:14px;">
-                                                44분
+                                                <%=time0%>분
                                             </div>
                                         </div>
                                         <div class="show"> <!--댓글 submit 버튼 통해 함수 실행돼 댓글 생성되게 함-->
@@ -302,8 +332,8 @@
                                         <hr style="border-top: 2px lightgray solid; margin-bottom:20px;">
                                         <div class="icon">
                                             <span class="icon_below icon_click">
-                                                 <img src="https://png.pngitem.com/pimgs/s/111-1119299_black-hollow-heart-icon-hd-png-download.png"
-                                                 width="30px;" onclick="change(this);">
+                                                <img src="https://png.pngitem.com/pimgs/s/111-1119299_black-hollow-heart-icon-hd-png-download.png"
+                                                width="30px;" onclick="change(this,0);">
                                             </span>
                                             <span class="icon_below">
                                                 <img src="https://cdn-icons-png.flaticon.com/512/2/2043.png" width="30px">
@@ -317,20 +347,22 @@
                                             </span>
                                         </div>
                                         <div style="margin:5px 15px; line-height:30px;"> <!--line-height는 줄간격 조정-->
-                                            <strong>
-                                                좋아요 46개
+                                            <strong> <!--좋아요 숫자 구현-->
+                                                좋아요 
+                                                <!--(댓글 modal)like_num change-->
+                                                <span class="number"><%=like_num0%></span>개
                                             </strong>
                                             <div style="font-size:12px; color:gray;">
-                                                44분 전
+                                                <%=time0%>분 전
                                             </div>
                                         </div>
                                         <hr style="border: solid 1px gainsboro; margin:15px 0px;">
                                         <span style="float:left; margin:0px 15px;">
                                             <img src="https://cdn-icons-png.flaticon.com/512/637/637651.png" width="25px;">
                                         </span>
-                                        <form method="post" target="here"> <!--페이지 이동 없이 submit하기(iframe name이 here인 곳으로)-->
-                                            <input type="text" id="comment" class="comment" name="comment" placeholder="댓글 달기..."></input>
-                                            <input type="submit" value="게시" class="comment_send" onclick="make_comment();"></input>
+                                        <form method="get" target="here"> <!--페이지 이동 없이 submit하기(iframe name이 here인 곳으로)-->
+                                            <input type="text" class="comment comment_text" name="comment" placeholder="댓글 달기..."></input>
+                                            <input type="submit" value="게시" class="comment_send" onclick="make_comment(0);"></input>
                                         </form>
                                         <iframe name="here" style="display:none;"></iframe> <!--안보이게 처리-->
                                     </div>
@@ -350,15 +382,18 @@
                     </span>
                     <div style="margin:0px 15px; line-height:30px;"> <!--line-height는 줄간격 조정-->
                         <strong>
-                            좋아요 46개
+                            좋아요
+                            <!--like_num change-->
+                            <span class="number"><%=like_num0%></span>개
                             <br> sejong_univ
                         </strong>
-                        이달의 세종인 : 2월 편 ...
+                        <!--contents change-->
+                        <%=contents0%>
                         <span style="color:gray;">
                             더 보기
                         </span>
                         <div style="font-size:12px; color:gray;">
-                            44분전
+                            <%=time0%>분 전
                         </div>
                     </div>
                     <hr style="border: solid 1px gainsboro; margin:15px 0px;">
@@ -370,19 +405,49 @@
                         <input type="submit" value="게시" class="comment_send"></input>
                     </form>
                 </div>
+                
+                <!--복사해보기-->
+                <div id="clone_post"></div>
 
                 <!--두번째 게시물-->
-                <div class="post" style="margin-top:30px;">
+                <div class="post">
                     <img src="https://cdn2.iconfinder.com/data/icons/instagram-outline/19/11-512.png" width="40px" 
                     style="margin:7px 10px;float:left;"> <!--float 쓰면 왼쪽에 사진 위치, 오른쪽에 다른 것 위치 가능-->
                     <span style="display:inline-block; margin:13px 0px; font-size:16px;"> <!--float 써서 글자 가운데 오도록 조정 가능-->
                         sejong_univ
                     </span>
-                    <span style="float:right; margin:15px; border:none; background-color:white;">
+                    <button class="open" style="float:right; margin:15px; border:none; background-color:white;" onclick="dot_modal(3);"> <!--modal창 열 버튼-->
                         <img src="https://cdn-icons-png.flaticon.com/512/60/60969.png" width="15px;">
-                    </span>
+                    </button>
+                    <!--dot modal-->
+                    <div class="modal_wrapper" style="display:none;">
+                        <div class="modal">
+                            <div class="modal_sq" style="color:red; font-weight:bold;">
+                                신고
+                            </div>
+                            <div class="modal_sq" style="color:red; font-weight:bold;">
+                                팔로우 취소
+                            </div>
+                            <div class="modal_sq">
+                                게시물로 이동
+                            </div>
+                            <div class="modal_sq">
+                                공유 대상...
+                            </div>
+                            <div class="modal_sq">
+                                링크 복사
+                            </div>
+                            <div class="modal_sq">
+                                퍼가기
+                            </div>
+                            <div class="close_wrapper">
+                                <button class="close">취소</button>
+                            </div>
+                        </div>
+                    </div>
 
-                    <img src="http://www.sommeliertimes.com/news/photo/202012/17954_39761_381.jpg" width="600px;">
+                    <!--photo change-->
+                    <img src="<%=photo3%>" width="600px;">
 
                     <div style="text-align:center;">
                         <img src="https://kr.seaicons.com/wp-content/uploads/2015/06/Circle-icon.png" width="7px">
@@ -397,10 +462,99 @@
 
                     <span class="icon_below icon_click" style="margin-left:16px;">
                         <img src="https://png.pngitem.com/pimgs/s/111-1119299_black-hollow-heart-icon-hd-png-download.png"
-                         width="30px;" height="30px;" onclick="change(this);">
+                         width="30px;" height="30px;" onclick="change(this,7);">
                     </span>
                     <span class="icon_below">
-                        <img src="https://cdn-icons-png.flaticon.com/512/2/2043.png" width="30px">
+                        <button class="open_comment" style=" border:none; background-color:white;" onclick="comment_modal(3);">
+                            <img src="https://cdn-icons-png.flaticon.com/512/2/2043.png" width="30px">
+                        </button>
+                        <div class="modal_group" style="display:none;">
+                            <div class="modal_comment" id="group">
+                                <div class="modal_left" style="float:left;">
+                                    <!--photo change-->
+                                    <img src="<%=photo3%>" width="800px" style="border-right:1px solid lightgray; position:relative;">
+                                </div>
+                                <div>
+                                    <span>
+                                        <img src="https://cdn2.iconfinder.com/data/icons/instagram-outline/19/11-512.png" 
+                                        width="60px" style="margin:10px; position:relative;">
+                                        <span style="font-weight:bold; position:relative; top:-35px;">
+                                            sejong_univ · 팔로잉
+                                        </span>
+                                    </span>
+                                    <hr style="position:relative; top:-10px; border: 1px lightgray solid;">
+                                    <div class="modal_right">
+                                        <div>
+                                            <img src="https://cdn2.iconfinder.com/data/icons/instagram-outline/19/11-512.png" 
+                                            width="60px" style="margin:0px 10px; position:relative;">
+                                            <span style="position:relative; top:-35px;">
+                                                <b>
+                                                    sejong_univ
+                                                </b>
+                                                &nbsp;<%=contents3%>
+                                            </span>
+                                        </div>
+                                        <div style="padding-left:85px; position:relative; top:-20px;">
+                                            <div>
+                                                <%=long_contents3%>
+                                            </div>
+                                            <br>
+                                            <div style="color:navy;">
+                                                #세종대학교 #세종대
+                                            </div>
+                                            <br>
+                                            <div style="color:gray; font-size:14px;">
+                                                <%=time3%>분
+                                            </div>
+                                        </div>
+                                        <div class="show"> <!--댓글 submit 버튼 통해 함수 실행돼 댓글 생성되게 함-->
+                                            <!--여기에 댓글 추가됨-->
+                                        </div>
+                                    </div>
+                                    <div style="position:relative;">
+                                        <hr style="border-top: 2px lightgray solid; margin-bottom:20px;">
+                                        <div class="icon">
+                                            <span class="icon_below icon_click">
+                                                <img src="https://png.pngitem.com/pimgs/s/111-1119299_black-hollow-heart-icon-hd-png-download.png"
+                                                width="30px;" onclick="change(this,6);">
+                                            </span>
+                                            <span class="icon_below">
+                                                <img src="https://cdn-icons-png.flaticon.com/512/2/2043.png" width="30px">
+                                            </span>
+                                            <span class="icon_below" style="position:relative">
+                                                <img src="https://cdn-icons-png.flaticon.com/512/126/126536.png" width="30px;">
+                                            </span>
+                                            <span class="icon_below icon_click" style="float:right; margin-right:20px;">
+                                                <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" 
+                                                width="25px;" style="position:relative; top:-5px;" onclick="change(this);">
+                                            </span>
+                                        </div>
+                                        <div style="margin:5px 15px; line-height:30px;"> <!--line-height는 줄간격 조정-->
+                                            <strong> <!--좋아요 숫자 구현-->
+                                                좋아요 
+                                                <!--(댓글 modal)like_num change-->
+                                                <span class="number"><%=like_num3%></span>개
+                                            </strong>
+                                            <div style="font-size:12px; color:gray;">
+                                                <%=time3%>분 전
+                                            </div>
+                                        </div>
+                                        <hr style="border: solid 1px gainsboro; margin:15px 0px;">
+                                        <span style="float:left; margin:0px 15px;">
+                                            <img src="https://cdn-icons-png.flaticon.com/512/637/637651.png" width="25px;">
+                                        </span>
+                                        <form method="get" target="here"> <!--페이지 이동 없이 submit하기(iframe name이 here인 곳으로)-->
+                                            <input type="text" class="comment comment_text" name="comment" placeholder="댓글 달기..."></input>
+                                            <input type="submit" value="게시" class="comment_send" onclick="make_comment(3);"></input>
+                                        </form>
+                                        <iframe name="here" style="display:none;"></iframe> <!--안보이게 처리-->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="close_group">
+                                <button class="close_comment">X</button>
+                            </div>
+                        </div>
                     </span>
                     <span class="icon_below">
                         <img src="https://cdn-icons-png.flaticon.com/512/126/126536.png" width="30px;">
@@ -410,15 +564,18 @@
                     </span>
                     <div style="margin:0px 15px; line-height:30px;"> <!--line-height는 줄간격 조정-->
                         <strong>
-                            좋아요 54개
+                            좋아요
+                            <!--like_num change-->
+                            <span class="number"><%=like_num3%></span>개
                             <br> sejong_univ
                         </strong>
-                        이달의 세종인 : 음식 편 ...
+                        <!--contents change-->
+                        <%=contents3%>
                         <span style="color:gray;">
                             더 보기
                         </span>
                         <div style="font-size:12px; color:gray;">
-                            50분전
+                            <%=time3%>분 전
                         </div>
                     </div>
                     <hr style="border: solid 1px gainsboro; margin:15px 0px;">
@@ -432,6 +589,6 @@
                 </div>
             </div>
         </div>
-        <script src="/page.js"></script> <!--index.js에서 사용하려고 page.js앞에 / 붙여줌-->
+        <script src="/page.js"></script> <!--index.js에서 사용하려고 page.js앞에 / 붙여줌 -->
     </body>
 </html>
