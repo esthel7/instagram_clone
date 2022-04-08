@@ -44,11 +44,45 @@ function change(photo,check){
     if(check!=undefined) like[check].innerText=num;//좋아요 숫자 반영하기
 }
 
+let data, comment, user, post_photo1,contents1,long_contents1,time1,like_num1,post_photo2,contents2,long_contents2,like_num2,time2;
+let i,j,k,comment_user1=[],comment_contents1=[],comment_time1=[],comment_user2=[],comment_contents2=[],comment_time2=[];
+function pass(mysql_data, comment_data){
+    data=JSON.parse(mysql_data); //mysql_data는 객체를 string으로 바꾼 것이라 string을 객체로 바꿔주기
+    comment=JSON.parse(comment_data);
+    user=data[0].user;
+    post_photo1=data[1].photo;
+    contents1=data[1].contents;
+    long_contents1=data[1].long_contents;
+    like_num1=data[1].like_num;
+    time1=data[1].time;
+    post_photo2=data[2].photo;
+    contents2=data[2].contents;
+    long_contents2=data[2].long_contents;
+    like_num2=data[2].like_num;
+    time2=data[2].time;
+    j=0;
+    k=0;
+    for(i=0;i<comment.length;i++){
+        if(comment[i].id===2){
+            comment_user1[j]=comment[i].comment_user;
+            comment_contents1[j]=comment[i].contents;
+            comment_time1[j]=comment[i].time;
+            j++;
+        }
+        if(comment[i].id===3){
+            comment_user2[k]=comment[i].comment_user;
+            comment_contents2[k]=comment[i].contents;
+            comment_time2[k]=comment[i].time;
+            k++;
+        }
+    }
+    cloning();//pass함수 실행 후 실행되어야 함
+}
+
 function make_comment(num){
     const newComment=document.createElement('div');//div태그로 감싸짐
-    const text=document.createElement('span');//span태그로 감싸짐
+    const text=document.createElement('div');//div태그로 감싸짐
     const time=document.createElement('div');
-    const comment_div=document.createElement('div');
     const comment=document.getElementsByClassName("comment_text");
     const img=`
     <img class="img" src="https://cdn2.iconfinder.com/data/icons/instagram-outline/19/11-512.png" width="60px">
@@ -59,84 +93,42 @@ function make_comment(num){
     const time_text=`지금 &nbsp;<b>답글 달기</b>`;
 
     newComment.classList.add('commentGroup');//div태그에 class commentGroup 추가하기
-    text.classList.add('text');//span태그에 class text 추가하기
+    text.classList.add('text');//class text 추가하기
     time.classList.add('time');
-    comment_div.classList.add('div_comment');
-    
-    comment_div.append(comment[num].value);//댓글의 내용을 comment_div에 추가
+ 
     text.innerHTML=name;//html형식일 경우 innerHTML
-    text.append(comment_div);//댓글내용이 담긴 div태그를 text에 추가
+    text.append(comment[num].value);//댓글의 내용을 text에 추가
     time.innerHTML=time_text;
-    text.append(time);
     newComment.innerHTML=img;
     newComment.append(text);
-    
+    newComment.append(time);
+ 
+    /*css 적용할 경우
     const stylegroup=document.createElement('style');
     const styles=`
-        .div_comment{
-            width:300px;
-            word-wrap: break-word; /*문장 길면 width에 맞춰서 자동 줄바꿈*/
-            position:relative;
-            top:-22px;
-            left:150px;
-        }
-        .img{
-            margin:0px 10px;
-            margin-right:5px;
-            position:relative;
-        }
-        .img_h{
-            float:right;
-            margin-right:15px;
-            position:relative;
-            top:20px;
-        }
-        .text{ 
-            position:relative;
-            bottom:30px;
-        }
-        .time{
-            font-size:14px;
-            color:gray;
-            padding-left:80px;
+        .commentGroup{
+            margin-bottom:10px;
         }
     `;
-    stylegroup.innerText=styles;//stylegroup안에 styles 넣기
+    stylegroup.innerText=styles;//stylegroup안에 styles 넣기, 나머지 css는 page.css에서 자동적용
     document.head.appendChild(stylegroup);//css적용되도록 head태그 안에 넣기
-
+    */
     const showComment=document.getElementsByClassName('show');
     showComment[num].append(newComment);//class가 show인 곳에 div로 감싸진 전체 내용 삽입됨
 
     /* newComment 형태 예시
     <div class="commentGroup">
         img
-        <span class="text">
+        <div class="text">
             name
-            <div class="div_comment">
-                id가 comment인 내용
-            </div>
-            <div class="time">
-                time
-            </div>
-        </span>
+            id가 comment인 내용
+        </div>
+        <div class="time">
+            time
+        </div>
     </div>
     */
 }
-
-let post_photo1,contents1,long_contents1,time1,like_num1,post_photo2,contents2,long_contents2,like_num2,time2;
-function pass(photo1,cont1,long1,like1,post_time1,photo2,cont2,long2,like2,post_time2){//onload함수로, 가장 늦게 실행됨
-    post_photo1=photo1;
-    contents1=cont1;
-    long_contents1=long1;
-    like_num1=like1;
-    time1=post_time1;
-    post_photo2=photo2;
-    contents2=cont2;
-    long_contents2=long2;
-    like_num2=like2;
-    time2=post_time2;
-    cloning();//pass함수 실행 후 실행되어야 함
-};
 
 /*new post*/
 function makePost(photo, num, num2, num3, like, text, long, time){
@@ -213,7 +205,7 @@ function makePost(photo, num, num2, num3, like, text, long, time){
                         </span>
                         <hr style="position:relative; top:-10px; border: 1px lightgray solid;">
                         <div class="modal_right">
-                            <div>
+                            <div class="comment_modal_group">
                                 <img src="https://cdn2.iconfinder.com/data/icons/instagram-outline/19/11-512.png" 
                                 width="60px" style="margin:0px 10px; position:relative;">
                                 <span style="position:relative; top:-35px;">
@@ -222,22 +214,23 @@ function makePost(photo, num, num2, num3, like, text, long, time){
                                     </b>
                                     &nbsp;${text}
                                 </span>
-                            </div>
-                            <div style="padding-left:85px; position:relative; top:-20px;">
-                                <div>
-                                    ${long}
-                                </div>
                                 <br>
-                                <div style="color:navy;">
-                                    #세종대학교 #세종대
+                                <div style="padding-left:85px; position:relative; top:-20px;">
+                                    <div>
+                                        ${long}
+                                    </div>
+                                    <br>
+                                    <div style="color:navy;">
+                                        #세종대학교 #세종대
+                                    </div>
+                                    <br>
+                                    <div style="color:gray; font-size:14px;">
+                                        ${time}분
+                                    </div>
                                 </div>
-                                <br>
-                                <div style="color:gray; font-size:14px;">
-                                    ${time}분
+                                <div class="show">
+                                    <!--여기에 댓글 추가됨-->
                                 </div>
-                            </div>
-                            <div class="show">
-                                <!--여기에 댓글 추가됨-->
                             </div>
                         </div>
                         <div style="position:relative;">
@@ -317,15 +310,52 @@ function makePost(photo, num, num2, num3, like, text, long, time){
     `
 }
 
+function show_comment(num,j,comment_user,comment_contents,comment_time){
+    for(let i=0;i<j;i++){
+        let newComment=document.createElement('div');//div태그로 감싸짐
+        let text=document.createElement('div');//div태그로 감싸짐
+        let time=document.createElement('div');
+        let comment=comment_contents[i];
+        let img=`
+        <img class="img" src="https://cdn2.iconfinder.com/data/icons/instagram-outline/19/11-512.png" width="60px">
+        <img class="img_h" src="https://png.pngitem.com/pimgs/s/111-1119299_black-hollow-heart-icon-hd-png-download.png"
+        width="12px;" height="12px;">
+        `;
+        let name=`<b class="name">${comment_user[i]}&nbsp;</b>`;//&nbsp;는 띄어쓰기
+        let time_text=`${comment_time[i]}분 &nbsp;<b>답글 달기</b>`;
+
+        newComment.classList.add('commentGroup');//div태그에 class commentGroup 추가하기
+        text.classList.add('text');//span태그에 class text 추가하기
+        time.classList.add('time');
+
+        text.innerHTML=name;//html형식일 경우 innerHTML
+        text.append(comment);
+        time.innerHTML=time_text;
+        newComment.innerHTML=img;
+        newComment.append(text);
+        newComment.append(time);
+
+        let showComment=document.getElementsByClassName('show');
+        showComment[num].append(newComment);//class가 show인 곳에 div로 감싸진 전체 내용 삽입됨
+    }
+}
+
 /*post clone*/
 function cloning(){//함수 없어도 되지만 onload의 pass함수 실행 후 실행되기 위해 선언
     const clone=document.getElementById('clone_post');
     let newPost;
-    let i=0;
+    let i=0,u=0;
     for(i=0;i<2;i++){
-        if(i==0) newPost=makePost(post_photo1,'1','2','3',like_num1,contents1,long_contents1,time1);
-        else newPost=makePost(post_photo2,'2','4','5',like_num2,contents2,long_contents2,time2);
-        clone.innerHTML = clone.innerHTML + newPost;
+        if(i==0) {
+            newPost=makePost(post_photo1,'1','2','3',like_num1,contents1,long_contents1,time1);
+            clone.innerHTML = clone.innerHTML + newPost;
+            show_comment(1,j,comment_user1,comment_contents1,comment_time1);//댓글 보여주기 위한 함수, js return에선 ejs파일 안되기때문(html만 가능)
+        }
+        else {
+            newPost=makePost(post_photo2,'2','4','5',like_num2,contents2,long_contents2,time2);
+            clone.innerHTML = clone.innerHTML + newPost;
+            show_comment(2,k,comment_user2,comment_contents2,comment_time2);
+        }
     }
 }
 

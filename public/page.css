@@ -122,6 +122,38 @@ body{
     background-color:white;
     margin-right:15px;
 }
+.img{
+    margin:0px 10px;
+    margin-right:5px;
+    position:relative;
+}
+.img_h{
+    float:right;
+    margin-right:15px;
+    position:relative;
+    top:20px;
+}
+.text{ 
+    position:relative;
+    bottom:50px;
+    width:360px;
+    word-wrap: break-word; /*문장 길면 width에 맞춰서 자동 줄바꿈*/
+    padding-left:80px;
+}
+.time{
+    position:relative;
+    bottom:30px;
+    font-size:14px;
+    color:gray;
+    padding-left:80px;
+}
+.comment_modal_group{
+    overflow:auto; /*내용 많으면 자동으로 스크롤 생성*/
+    height:480px;
+}
+.show{
+    height:260px;
+}
 .modal_group:hover img{
     filter:none;
 }

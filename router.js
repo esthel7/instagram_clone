@@ -26,7 +26,7 @@ router.get('/',function(req,res){
     res.sendFile(__dirname + '/instagram_login.html');//html파일 열어주기 위함. __dirname은 약속임
 });
 
-let user_photo,post_photo=[],contents=[],long_contents=[],like_num=[],time=[];
+let user_photo, mysql_data, comment_data;
 router.post('/',function(req,res){ //로그인폼에서 내용을 post형식으로 보냄(보안 이유)
     const id=req.body.user;//body-parser 해야 오류x
     const pw=req.body.password;
@@ -40,26 +40,14 @@ router.post('/',function(req,res){ //로그인폼에서 내용을 post형식으�
                 user_photo=result[0].photo;
                 insta_db.query(`SELECT * FROM user JOIN post_info ON user.email=post_info.user WHERE user.email=?`,[id],function(error2, results){
                     //user의 email과 post_info의 user가 같다면 results로 결과 반환 (user email이 id인 경우)
-                    post_photo[0]=results[0].photo;
-                    post_photo[1]=results[1].photo;
-                    post_photo[2]=results[2].photo;
-                    post_photo[3]=results[3].photo;
-                    contents[0]=results[0].contents;
-                    contents[1]=results[1].contents;
-                    contents[2]=results[2].contents;
-                    contents[3]=results[3].contents;
-                    long_contents[0]=results[0].long_contents;
-                    long_contents[1]=results[1].long_contents;
-                    long_contents[2]=results[2].long_contents;
-                    long_contents[3]=results[3].long_contents;
-                    like_num[0]=results[0].like_num;
-                    like_num[1]=results[1].like_num;
-                    like_num[2]=results[2].like_num;
-                    like_num[3]=results[3].like_num;
-                    time[0]=results[0].time;
-                    time[1]=results[1].time;
-                    time[2]=results[2].time;
-                    time[3]=results[3].time;
+                    mysql_data=results;
+                });
+                insta_db.query(`SELECT post_user,comment.id,comment.contents,comment.time,comment_user FROM post_info RIGHT JOIN comment
+                ON post_info.user=comment.post_user AND post_info.id=comment.id WHERE comment.post_user=?`,[id],function(error3, resultss){
+                    // post_info와 comment user가 같고 id도 동일하면 resultss로 결과 반환 (post_info user가 id인 경우)
+                    //이름이 같으면 comment.id처럼 테이블 명시해줘야 함
+                    //RIGHT JOIN은 comment 중심으로 post_info 매치. 만약에 post_info에 값 없으면 null로 반환
+                    comment_data=resultss;
                 });
                 req.session.user={//session정보 저장
                     user_email:id,
@@ -104,13 +92,8 @@ router.get('/check',function(req,res){
 router.get('/page',function(req,res){
     if(req.session.user){
         //사용자사진, 게시글 사진, 텍스트, 좋아요 수를 page.ejs에 포함시켜야 함
-        res.render(__dirname + '/views/instagram_page.ejs', {user:user_photo, //ejs 파일은 sendFile 대신 render 쓰기, user_photo를 'user'로 ejs파일로 보내주기
-        photo0:post_photo[0],photo1:post_photo[1],photo2:post_photo[2],photo3:post_photo[3],
-        contents0:contents[0],contents1:contents[1],contents2:contents[2],contents3:contents[3],
-        long_contents0:long_contents[0],long_contents1:long_contents[1],long_contents2:long_contents[2],long_contents3:long_contents[3],
-        like_num0:like_num[0],like_num1:like_num[1],like_num2:like_num[2],like_num3:like_num[3],
-        time0:time[0],time1:time[1],time2:time[2],time3:time[3]}
-        );
+        res.render(__dirname + '/views/instagram_page.ejs', {user:user_photo, data:mysql_data, comment:comment_data});
+        //ejs 파일은 sendFile 대신 render 쓰기, user_photo를 'user'로 ejs파일로 보내주기
     }
     else res.redirect('/');
 });

@@ -7,8 +7,8 @@
         <link rel="stylesheet" href="/page.css"> <!--css파일 불러오기 index.js에서 사용하려고 page앞에 / 붙여줌-->
         <!--모달창 실행위한 js파일 body태그 아래에 있음-->>
     </head>
-    <body onload="pass('<%=photo1%>','<%=contents1%>','<%=long_contents1%>','<%=like_num1%>','<%=time1%>','<%=photo2%>','<%=contents2%>','<%=long_contents2%>','<%=like_num2%>','<%=time2%>');"> 
-    <!--onload 함수는 js에서 가장 늦게 실행되는 함수. index.js의 mysql정보 전달위해 선언-->
+    <body onload="pass('<%=JSON.stringify(data)%>','<%=JSON.stringify(comment)%>');">
+    <!--onload 함수는 js에서 가장 늦게 실행되는 함수. router.js의 mysql정보 전달위해 선언. data는 객체라 JSON.stringify로 string으로 바꿔서 전달하기-->
 
         <!--상단바-->
         <div id="up_group">
@@ -42,7 +42,7 @@
                 </span>
                 <button class="icon user">
                     <!--해당 이미지를 mysql 연동해서 바꾸기-->
-                    <img src="<%=user%>" width="25px;"> <!--'%=user%'는 index.js에서 보낸 자료-->
+                    <img src="<%=user%>" width="25px;"> <!--'%=user%'는 router.js에서 보낸 자료-->
                 </button>
             </span>
         </div>
@@ -265,7 +265,7 @@
                     <!--script 태그랑 js파일 맨 아래에 있음-->
 
                     <!--photo change-->
-                    <img src="<%=photo0%>" width="600px;">
+                    <img src="<%=data[0].photo%>" width="600px;"> <!--router.js에서 보낸 자료-->
                     <div style="text-align:center;">
                         <img src="https://kr.seaicons.com/wp-content/uploads/2015/06/Circle-icon.png" width="7px">
                         <img src="https://m.smartcara.com/web/product/option_button/202105/0862794c02ec7f7e906e98d1cf44f1ea.png" width="6px">
@@ -289,7 +289,7 @@
                             <div class="modal_comment" id="group">
                                 <div class="modal_left" style="float:left;">
                                     <!--photo change-->
-                                    <img src="<%=photo0%>" width="800px" style="border-right:1px solid lightgray; position:relative;">
+                                    <img src="<%=data[0].photo%>" width="800px" style="border-right:1px solid lightgray; position:relative;">
                                 </div>
                                 <div>
                                     <span>
@@ -301,31 +301,50 @@
                                     </span>
                                     <hr style="position:relative; top:-10px; border: 1px lightgray solid;">
                                     <div class="modal_right">
-                                        <div>
+                                        <div class="comment_modal_group">
                                             <img src="https://cdn2.iconfinder.com/data/icons/instagram-outline/19/11-512.png" 
                                             width="60px" style="margin:0px 10px; position:relative;">
                                             <span style="position:relative; top:-35px;">
                                                 <b>
                                                     sejong_univ
                                                 </b>
-                                                &nbsp;<%=contents0%>
+                                                &nbsp;<%=data[0].contents%>
                                             </span>
-                                        </div>
-                                        <div style="padding-left:85px; position:relative; top:-20px;">
-                                            <div>
-                                                <%=long_contents0%>
-                                            </div>
                                             <br>
-                                            <div style="color:navy;">
-                                                #세종대학교 #세종대
+                                            <div style="padding-left:85px; position:relative; top:-20px;">
+                                                <div>
+                                                    <%=data[0].long_contents%>
+                                                </div>
+                                                <br>
+                                                <div style="color:navy;">
+                                                    #세종대학교 #세종대
+                                                </div>
+                                                <br>
+                                                <div style="color:gray; font-size:14px;">
+                                                    <%=data[0].time%>분
+                                                </div>
                                             </div>
-                                            <br>
-                                            <div style="color:gray; font-size:14px;">
-                                                <%=time0%>분
+                                            <div class="show"> <!--댓글 submit 버튼 통해 함수 실행돼 댓글 생성되게 함. 내용 많으면 스크롤 생김-->
+                                                <!--여기에 댓글 추가됨-->
+                                                <%for(let i=0;i<comment.length;i++){%> <!--ejs에서 for문 실행-->
+                                                    <%if(comment[i].id===1){%> <!--ejs에서 if문 실행-->
+                                                        <div class="commentGroup">
+                                                            <img class="img" src="https://cdn2.iconfinder.com/data/icons/instagram-outline/19/11-512.png" width="60px">
+                                                            <img class="img_h" src="https://png.pngitem.com/pimgs/s/111-1119299_black-hollow-heart-icon-hd-png-download.png"
+                                                            width="12px;" height="12px;">
+                                                            <div class="text">
+                                                                <b>
+                                                                    <%=comment[i].comment_user%>&nbsp;
+                                                                </b>
+                                                                <%=comment[i].contents%>
+                                                            </div>
+                                                            <div class="time">
+                                                                <%=comment[i].time%>분 &nbsp;<b>답글 달기</b>
+                                                            </div>
+                                                        </div>
+                                                    <%}%>
+                                                <%}%>
                                             </div>
-                                        </div>
-                                        <div class="show"> <!--댓글 submit 버튼 통해 함수 실행돼 댓글 생성되게 함-->
-                                            <!--여기에 댓글 추가됨-->
                                         </div>
                                     </div>
                                     <div style="position:relative;">
@@ -350,17 +369,17 @@
                                             <strong> <!--좋아요 숫자 구현-->
                                                 좋아요 
                                                 <!--(댓글 modal)like_num change-->
-                                                <span class="number"><%=like_num0%></span>개
+                                                <span class="number"><%=data[0].like_num%></span>개
                                             </strong>
                                             <div style="font-size:12px; color:gray;">
-                                                <%=time0%>분 전
+                                                <%=data[0].time%>분 전
                                             </div>
                                         </div>
                                         <hr style="border: solid 1px gainsboro; margin:15px 0px;">
                                         <span style="float:left; margin:0px 15px;">
                                             <img src="https://cdn-icons-png.flaticon.com/512/637/637651.png" width="25px;">
                                         </span>
-                                        <form method="get" target="here"> <!--페이지 이동 없이 submit하기(iframe name이 here인 곳으로)-->
+                                        <form method="get" target="here"> <!--페이지 이동 없이 submit하기(iframe name이 here인 곳으로)--> <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
                                             <input type="text" class="comment comment_text" name="comment" placeholder="댓글 달기..."></input>
                                             <input type="submit" value="게시" class="comment_send" onclick="make_comment(0);"></input>
                                         </form>
@@ -384,16 +403,16 @@
                         <strong>
                             좋아요
                             <!--like_num change-->
-                            <span class="number"><%=like_num0%></span>개
+                            <span class="number"><%=data[0].like_num%></span>개
                             <br> sejong_univ
                         </strong>
                         <!--contents change-->
-                        <%=contents0%>
+                        <%=data[0].contents%>
                         <span style="color:gray;">
                             더 보기
                         </span>
                         <div style="font-size:12px; color:gray;">
-                            <%=time0%>분 전
+                            <%=data[0].time%>분 전
                         </div>
                     </div>
                     <hr style="border: solid 1px gainsboro; margin:15px 0px;">
@@ -447,7 +466,7 @@
                     </div>
 
                     <!--photo change-->
-                    <img src="<%=photo3%>" width="600px;">
+                    <img src="<%=data[3].photo%>" width="600px;">
 
                     <div style="text-align:center;">
                         <img src="https://kr.seaicons.com/wp-content/uploads/2015/06/Circle-icon.png" width="7px">
@@ -472,7 +491,7 @@
                             <div class="modal_comment" id="group">
                                 <div class="modal_left" style="float:left;">
                                     <!--photo change-->
-                                    <img src="<%=photo3%>" width="800px" style="border-right:1px solid lightgray; position:relative;">
+                                    <img src="<%=data[3].photo%>" width="800px" style="border-right:1px solid lightgray; position:relative;">
                                 </div>
                                 <div>
                                     <span>
@@ -484,31 +503,50 @@
                                     </span>
                                     <hr style="position:relative; top:-10px; border: 1px lightgray solid;">
                                     <div class="modal_right">
-                                        <div>
+                                        <div class="comment_modal_group">
                                             <img src="https://cdn2.iconfinder.com/data/icons/instagram-outline/19/11-512.png" 
                                             width="60px" style="margin:0px 10px; position:relative;">
                                             <span style="position:relative; top:-35px;">
                                                 <b>
                                                     sejong_univ
                                                 </b>
-                                                &nbsp;<%=contents3%>
+                                                &nbsp;<%=data[3].contents%>
                                             </span>
-                                        </div>
-                                        <div style="padding-left:85px; position:relative; top:-20px;">
-                                            <div>
-                                                <%=long_contents3%>
-                                            </div>
                                             <br>
-                                            <div style="color:navy;">
-                                                #세종대학교 #세종대
+                                            <div style="padding-left:85px; position:relative; top:-20px;">
+                                                <div>
+                                                    <%=data[3].long_contents%>
+                                                </div>
+                                                <br>
+                                                <div style="color:navy;">
+                                                    #세종대학교 #세종대
+                                                </div>
+                                                <br>
+                                                <div style="color:gray; font-size:14px;">
+                                                    <%=data[3].time%>분
+                                                </div>
                                             </div>
-                                            <br>
-                                            <div style="color:gray; font-size:14px;">
-                                                <%=time3%>분
+                                            <div class="show"> <!--댓글 submit 버튼 통해 함수 실행돼 댓글 생성되게 함-->
+                                                <!--여기에 댓글 추가됨-->
+                                                <%for(let i=0;i<comment.length;i++){%> <!--ejs에서 for문 실행-->
+                                                    <%if(comment[i].id===4){%> <!--ejs에서 if문 실행-->
+                                                        <div class="commentGroup">
+                                                            <img class="img" src="https://cdn2.iconfinder.com/data/icons/instagram-outline/19/11-512.png" width="60px">
+                                                            <img class="img_h" src="https://png.pngitem.com/pimgs/s/111-1119299_black-hollow-heart-icon-hd-png-download.png"
+                                                            width="12px;" height="12px;">
+                                                            <div class="text">
+                                                                <b>
+                                                                    <%=comment[i].comment_user%>&nbsp;
+                                                                </b>
+                                                                <%=comment[i].contents%>
+                                                            </div>
+                                                            <div class="time">
+                                                                <%=comment[i].time%>분 &nbsp;<b>답글 달기</b>
+                                                            </div>
+                                                        </div>
+                                                    <%}%>
+                                                <%}%>
                                             </div>
-                                        </div>
-                                        <div class="show"> <!--댓글 submit 버튼 통해 함수 실행돼 댓글 생성되게 함-->
-                                            <!--여기에 댓글 추가됨-->
                                         </div>
                                     </div>
                                     <div style="position:relative;">
@@ -533,10 +571,10 @@
                                             <strong> <!--좋아요 숫자 구현-->
                                                 좋아요 
                                                 <!--(댓글 modal)like_num change-->
-                                                <span class="number"><%=like_num3%></span>개
+                                                <span class="number"><%=data[3].like_num%></span>개
                                             </strong>
                                             <div style="font-size:12px; color:gray;">
-                                                <%=time3%>분 전
+                                                <%=data[3].time%>분 전
                                             </div>
                                         </div>
                                         <hr style="border: solid 1px gainsboro; margin:15px 0px;">
@@ -566,16 +604,16 @@
                         <strong>
                             좋아요
                             <!--like_num change-->
-                            <span class="number"><%=like_num3%></span>개
+                            <span class="number"><%=data[3].like_num%></span>개
                             <br> sejong_univ
                         </strong>
                         <!--contents change-->
-                        <%=contents3%>
+                        <%=data[3].contents%>
                         <span style="color:gray;">
                             더 보기
                         </span>
                         <div style="font-size:12px; color:gray;">
-                            <%=time3%>분 전
+                            <%=data[3].time%>분 전
                         </div>
                     </div>
                     <hr style="border: solid 1px gainsboro; margin:15px 0px;">
