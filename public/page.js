@@ -95,14 +95,14 @@ function make_comment(num){
     newComment.classList.add('commentGroup');//div태그에 class commentGroup 추가하기
     text.classList.add('text');//class text 추가하기
     time.classList.add('time');
- 
+
     text.innerHTML=name;//html형식일 경우 innerHTML
     text.append(comment[num].value);//댓글의 내용을 text에 추가
     time.innerHTML=time_text;
     newComment.innerHTML=img;
     newComment.append(text);
     newComment.append(time);
- 
+
     /*css 적용할 경우
     const stylegroup=document.createElement('style');
     const styles=`

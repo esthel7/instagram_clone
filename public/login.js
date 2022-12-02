@@ -10,3 +10,4 @@ function change_login(){
         button.disabled=false; //버튼 활성화(클릭할 수 있는 상태(id,pw확인절차 필요))
     }
 }
+

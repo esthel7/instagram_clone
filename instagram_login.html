@@ -10,7 +10,7 @@
         <div id="group">
             <div class="phone" style="position:relative; margin:20px 50px; height:0px;">
                 <img src="https://support.apple.com/library/content/dam/edam/applecare/images/ko_KR/iOS/ios13-iphone-xs-home-assistive-touch.png"
-                 width="280px;" style="margin-right:100px; margin-top:50px;">
+                width="280px;" style="margin-right:100px; margin-top:50px;">
                 <!--width에 %쓰면 화면 크기에 따라 사이즈 조절되고 px 쓰면 크기 고정-->
                 <div style="position:relative; top:-550px; left:150px;"> <!--position absolute로 하면 창 사이즈 변화에 유동적으로 대응x-->
                     <!--top을 -780px로 하면 사진 겹치기 가능-->
@@ -28,10 +28,12 @@
                     <form action="/" method="post"><!--submit버튼 누르면 해당 주소로 정보 보냄-->
                                                     <!--index.js에서 사용하려고 action주소 수정-->
                         <div class="small_sq">
-                            <input type="text" id="user" name="user" placeholder="전화번호, 사용자 이름 또는 이메일" onkeyup="change_login();"> <!--onkeyup은 키보드가 눌리면-->
+                            <input type="text" id="user" name="user" placeholder="전화번호, 사용자 이름 또는 이메일" onkeyup="change_login();"> 
+                            <!--onkeyup은 키보드가 눌리면-->
                         </div>
                         <div class="small_sq">
-                            <input type="password" id="password" name="password" placeholder="비밀번호" onkeyup="change_login();"> <!--placeholder는 입력창에 연하게 쓰여있게-->
+                            <input type="password" id="password" name="password" placeholder="비밀번호" onkeyup="change_login();"> 
+                            <!--placeholder는 입력창에 연하게 쓰여있게-->
                             <!--type password면 입력할 때 내용 안보이게 입력됨-->
                         </div>
                         <div class="blue_sq">
