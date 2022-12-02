@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Instagram_login</title>
+        <link rel="stylesheet" href="/login.css"> <!--css파일 불러오기 public/login.css하면 html파일로 열어볼 수 있는데 index.js에선 사용 불가-->
+        <!--js파일은 맨 아래에-->
+    </head>
+    <body>
+        <div id="group">
+            <div class="phone" style="position:relative; margin:20px 50px; height:0px;">
+                <img src="https://support.apple.com/library/content/dam/edam/applecare/images/ko_KR/iOS/ios13-iphone-xs-home-assistive-touch.png"
+                width="280px;" style="margin-right:100px; margin-top:50px;">
+                <!--width에 %쓰면 화면 크기에 따라 사이즈 조절되고 px 쓰면 크기 고정-->
+                <div style="position:relative; top:-550px; left:150px;"> <!--position absolute로 하면 창 사이즈 변화에 유동적으로 대응x-->
+                    <!--top을 -780px로 하면 사진 겹치기 가능-->
+                    <img src="https://cdn.pixabay.com/photo/2018/09/14/05/59/iphone-3676319_960_720.png" width="600px;">
+                </div>
+                <div style="position:relative; top:-1000px; right:30px;">
+                    <img src="https://phoneky.co.uk/thumbs/screensavers/down/original/linux_3rj131p8.gif">
+                </div>
+            </div>
+            <div class="right">
+                <div class="sq" style="text-align:center;">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm3tVBEiIu9-8yACyXjsiUGt0h02EUaUumVDq6L22_0DwhhHF
+                    Tjgm9jay8G_JhBO7pDcE&usqp=CAU"
+                    width="50%" style="padding:30px; padding-bottom:10px;">
+                    <form action="/" method="post"><!--submit버튼 누르면 해당 주소로 정보 보냄-->
+                                                    <!--index.js에서 사용하려고 action주소 수정-->
+                        <div class="small_sq">
+                            <input type="text" id="user" name="user" placeholder="전화번호, 사용자 이름 또는 이메일" onkeyup="change_login();"> 
+                            <!--onkeyup은 키보드가 눌리면-->
+                        </div>
+                        <div class="small_sq">
+                            <input type="password" id="password" name="password" placeholder="비밀번호" onkeyup="change_login();"> 
+                            <!--placeholder는 입력창에 연하게 쓰여있게-->
+                            <!--type password면 입력할 때 내용 안보이게 입력됨-->
+                        </div>
+                        <div class="blue_sq">
+                            <input type="submit" value="로그인" id="login" disabled>
+                            <!--전송버튼. id는 change_login 함수 위해 필요. value는 버튼의 이름 버튼 활성화 막아놓기(disabled)-->
+                        </div>
+                    </form>
+                    <div class="line">
+                        또는
+                    </div>
+                    <div style="font-size:20px; color:darkblue; margin:20px;">
+                        <img src="https://cdn-icons-png.flaticon.com/512/124/124010.png" width="5%">
+                        &nbsp;Facebook으로 로그인 <!--&nbsp;는 띄어쓰기-->
+                    </div>
+                    <div style="text-align:center;">
+                        비밀번호를 잊으셨나요?
+                    </div>
+                    <br>
+                </div>
+                <div class="sq" style="padding:20px 0px; text-align:center; margin-top:10px;">
+                    계정이 없으신가요?
+                    <span style="color:rgb(0, 174, 255);">
+                        가입하기
+                    </span>
+                </div>
+                <div style="text-align:left; margin:25px 0px 10px 120px;"> <!--위 오 아래 왼-->
+                    앱을 다운로드하세요.
+                </div>
+                <table style="margin-left:10px; width:400px;">
+                    <tr>
+                        <td style="text-align:right; padding-right:0px;">
+                            <img src="https://i-invdn-com.investing.com/landingPages/mobile_2018/kr/kr-badge-ios.png" width="85%">
+                        </td>
+                        <td style="text-align:left; padding-left:0px;">
+                            <img src="https://play.google.com/intl/ko/badges/static/images/badges/ko_badge_web_generic.png" width="80%">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div style="text-align:center;">
+            <table style="margin-top:10px;">
+                <tr>
+                    <td>Meta</td>
+                    <td>소개</td>
+                    <td>블로그</td>
+                    <td>채용 정보</td>
+                    <td>도움말</td>
+                    <td>API</td>
+                    <td>개인정보처리방침</td>
+                    <td>약관</td>
+                    <td>인기 계정</td>
+                    <td>해시태그</td>
+                    <td>위치</td>
+                    <td>Instagram Lite</td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td>댄스</td>
+                    <td>식음료</td>
+                    <td>집 및 정원</td>
+                    <td>음악</td>
+                    <td>시각 예술</td>
+                </tr>
+            </table>
+                <br>
+            <table>
+                <tr>
+                    <td>한국어▽</td>
+                    <td>@2022 Instagram from Meta</td>
+                </tr>
+            </table>
+        </div>
+        <script src="/login.js"></script> <!--js파일 불러오기-->
+    </body>
+</html>

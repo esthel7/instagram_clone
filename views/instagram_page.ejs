@@ -1,0 +1,632 @@
+<!--.ejs 파일은 항상 'views'폴더 아래에 있기. html과 형식 똑같음. 단, html과 달리 서버내용을 작성할 수 있음-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Instagram_page</title>
+        <link rel="stylesheet" href="/page.css"> <!--css파일 불러오기 index.js에서 사용하려고 page앞에 / 붙여줌-->
+        <!--모달창 실행위한 js파일 body태그 아래에 있음-->>
+    </head>
+    <body onload="pass('<%=JSON.stringify(data)%>','<%=JSON.stringify(comment)%>');">
+    <!--onload 함수는 js에서 가장 늦게 실행되는 함수. router.js의 mysql정보 전달위해 선언. data는 객체라 JSON.stringify로 string으로 바꿔서 전달하기-->
+
+        <!--상단바-->
+        <div id="up_group">
+            <span class="logo" style="text-align:right;">
+                <img src="https://cdn.apple-economy.com/news/photo/201612/30523_15394_5059.png"
+                width="100px" style="margin:8px;">
+            </span>
+            <span class="search"> <!--줄바꿈 되지 않도록-->
+                &nbsp; <!--띄어쓰기-->
+                <img src="https://img.lovepik.com/original_origin_pic/19/01/07/f4d522e5616a84704ba33c88addec54f.png_wh300.png" width="15px">
+                검색
+            </span>
+            <span class="icon_group">
+                <span class="icon">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSe8zT4ZGCgTpHchVLPnyVICcoLAdszys3vTQ&usqp=CAU"
+                    width="25px;" style="margin-top:15px;">
+                </span>
+                <span class="icon">
+                    <img src="https://cdn-icons-png.flaticon.com/512/126/126536.png" width="25px;">
+                </span>
+                <span class="icon">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3487/3487486.png" width="25px;">
+                </span>
+                <span class="icon">
+                    <img src="https://cdn-icons-png.flaticon.com/512/59/59182.png"
+                    width="25px;">
+                </span>
+                <span class="icon">
+                    <img src="https://png.pngitem.com/pimgs/s/111-1119299_black-hollow-heart-icon-hd-png-download.png"
+                        width="25px;" height="25px;">
+                </span>
+                <button class="icon user">
+                    <!--해당 이미지를 mysql 연동해서 바꾸기-->
+                    <img src="<%=user%>" width="25px;"> <!--'%=user%'는 router.js에서 보낸 자료-->
+                </button>
+            </span>
+        </div>
+
+        <!--user modal 로그인 로그아웃-->
+        <div class="user_modal_wrapper" style="display:none;">
+            <div class="user_modal">
+                <div class="user_modal_sq" style="border-top:1px solid lightgray;">
+                    <img src="https://cdn2.iconfinder.com/data/icons/instagram-outline/19/11-512.png" width="22px" 
+                    style="display:inline-block;">
+                    프로필
+                </div>
+                <div class="user_modal_sq">
+                    <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" width="15px;" style="display:inline-block; margin-left:2px;">
+                    &nbsp;저장됨
+                </div>
+                <div class="user_modal_sq">
+                    <img src="https://w7.pngwing.com/pngs/385/968/png-transparent-computer-icons-installation-icon-setting-cdr-white-black.png"
+                    width="15px" style="display:inline-block; margin-left:2px;">
+                    &nbsp;설정
+                </div>
+                <div class="user_modal_sq">
+                    <img src="http://cdn.onlinewebfonts.com/svg/img_411213.png" width="15px" style="display:inline-block; margin-left:2px;">
+                    &nbsp;계정 전환
+                </div>
+                <div class="close_user_modal">
+                    <button class="close_user">&nbsp;로그아웃</button>
+                </div>
+            </div>
+        </div>
+
+        <!--추천친구--> 
+        <div class="right" style="margin:60px 0px;">
+            <table>
+                <tr>
+                    <td>
+                        <img src="https://cdn2.iconfinder.com/data/icons/instagram-outline/19/11-512.png" width="80px">
+                    </td>
+                    <td>
+                        <b>
+                            &nbsp;&nbsp;open.year.round
+                        </b>
+                        <div style="color:gray; padding-right:20px;">
+                            &nbsp;&nbsp;세종대학교 open year round
+                        </div>
+                    </td>
+                    <td>
+                        <span style="float:right; color:rgb(0, 174, 255);">
+                            전환
+                        </span>
+                    </td>
+                </tr>
+            </table>
+            <br>
+            <b style="color:gray; margin-left:10px;">
+                회원님을 위한 추천&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <b style="color:black;">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;모두 보기
+                </b>
+            </b>
+            <div style="height:330px;">
+                <table style="margin-top:10px; position:relative;">
+                    <tr>
+                        <td>
+                            <img src="https://cdn2.iconfinder.com/data/icons/instagram-outline/19/11-512.png" width="60px">
+                        </td>
+                        <td>
+                            <b>
+                                &nbsp;&nbsp;A
+                            </b>
+                            <div style="color:gray; padding-right:70px;">
+                                &nbsp;&nbsp;회원님을 팔로우합니다
+                            </div>
+                        </td>
+                        <td>
+                            <span style="float:right; color:rgb(0, 174, 255);">
+                                팔로우
+                            </span>
+                        </td>
+                    </tr>
+                </table>
+                <table style="position:relative; top:-10px;">
+                    <tr>
+                        <td>
+                            <img src="https://cdn2.iconfinder.com/data/icons/instagram-outline/19/11-512.png" width="60px">
+                        </td>
+                        <td>
+                            <b>
+                                &nbsp;&nbsp;B
+                            </b>
+                            <div style="color:gray; padding-right:70px;">
+                                &nbsp;&nbsp;회원님을 팔로우합니다
+                            </div>
+                        </td>
+                        <td>
+                            <span style="float:right; color:rgb(0, 174, 255);">
+                                팔로우
+                            </span>
+                        </td>
+                    </tr>
+                </table>
+                <table style="position:relative; top:-20px;">
+                    <tr>
+                        <td>
+                            <img src="https://cdn2.iconfinder.com/data/icons/instagram-outline/19/11-512.png" width="60px">
+                        </td>
+                        <td>
+                            <b>
+                                &nbsp;&nbsp;C
+                            </b>
+                            <div style="color:gray; padding-right:70px;">
+                                &nbsp;&nbsp;회원님을 팔로우합니다
+                            </div>
+                        </td>
+                        <td>
+                            <span style="float:right; color:rgb(0, 174, 255);">
+                                팔로우
+                            </span>
+                        </td>
+                    </tr>
+                </table>
+                <table style="position:relative; top:-30px;">
+                    <tr>
+                        <td>
+                            <img src="https://cdn2.iconfinder.com/data/icons/instagram-outline/19/11-512.png" width="60px">
+                        </td>
+                        <td>
+                            <b>
+                                &nbsp;&nbsp;D
+                            </b>
+                            <div style="color:gray; padding-right:70px;">
+                                &nbsp;&nbsp;회원님을 팔로우합니다
+                            </div>
+                        </td>
+                        <td>
+                            <span style="float:right; color:rgb(0, 174, 255);">
+                                팔로우
+                            </span>
+                        </td>
+                    </tr>
+                </table>
+                <table style="position:relative; top:-40px;">
+                    <tr>
+                        <td>
+                            <img src="https://cdn2.iconfinder.com/data/icons/instagram-outline/19/11-512.png" width="60px">
+                        </td>
+                        <td>
+                            <b>
+                                &nbsp;&nbsp;E
+                            </b>
+                            <div style="color:gray; padding-right:70px;">
+                                &nbsp;&nbsp;회원님을 팔로우합니다
+                            </div>
+                        </td>
+                        <td>
+                            <span style="float:right; color:rgb(0, 174, 255);">
+                                팔로우
+                            </span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <br>
+            <div style="color:lightgray; line-height:30px; font-size:15px; margin-left:10px;">
+                소개·도움말·홍보 센터·API·채용 정보·<br>
+                개인정보처리방침·약관·위치·인기 계정·해시태그·<br>
+                언어
+                <br><br>
+                ⓒ 2022 INSTAGRAM FROM META
+            </div>
+        </div>
+
+        <!--스토리 및 게시물-->
+        <div id="post_group">
+            <div class="left">
+                <!--스토리-->
+                <div class="story">
+                    <img src="https://cdn2.iconfinder.com/data/icons/instagram-outline/19/11-512.png" width="60px" style="margin:5px 0px 0px 20px;">
+                    <div style="margin-left:33px;">
+                        OYR
+                    </div>
+                </div>
+                <!--첫번째 게시물-->
+                <div class="post">
+                    <img src="https://cdn2.iconfinder.com/data/icons/instagram-outline/19/11-512.png" width="40px" 
+                    style="margin:7px 10px;float:left;"> <!--float 쓰면 왼쪽에 사진 위치, 오른쪽에 다른 것 위치 가능-->
+                    <span style="display:inline-block; margin:13px 0px; font-size:16px;"> <!--float 써서 글자 가운데 오도록 조정 가능-->
+                        sejong_univ
+                    </span>
+                    
+                    <button class="open" style="float:right; margin:15px; border:none; background-color:white;" onclick="dot_modal(0);"> <!--modal창 열 버튼-->
+                        <img src="https://cdn-icons-png.flaticon.com/512/60/60969.png" width="15px;">
+                    </button>
+                    <!--dot modal-->
+                    <div class="modal_wrapper" style="display:none;">
+                        <div class="modal">
+                            <div class="modal_sq" style="color:red; font-weight:bold;">
+                                신고
+                            </div>
+                            <div class="modal_sq" style="color:red; font-weight:bold;">
+                                팔로우 취소
+                            </div>
+                            <div class="modal_sq">
+                                게시물로 이동
+                            </div>
+                            <div class="modal_sq">
+                                공유 대상...
+                            </div>
+                            <div class="modal_sq">
+                                링크 복사
+                            </div>
+                            <div class="modal_sq">
+                                퍼가기
+                            </div>
+                            <div class="close_wrapper">
+                                <button class="close">취소</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!--script 태그랑 js파일 맨 아래에 있음-->
+
+                    <!--photo change-->
+                    <img src="<%=data[0].photo%>" width="600px;"> <!--router.js에서 보낸 자료-->
+                    <div style="text-align:center;">
+                        <img src="https://kr.seaicons.com/wp-content/uploads/2015/06/Circle-icon.png" width="7px">
+                        <img src="https://m.smartcara.com/web/product/option_button/202105/0862794c02ec7f7e906e98d1cf44f1ea.png" width="6px">
+                        <img src="https://m.smartcara.com/web/product/option_button/202105/0862794c02ec7f7e906e98d1cf44f1ea.png" width="6px">
+                        <img src="https://m.smartcara.com/web/product/option_button/202105/0862794c02ec7f7e906e98d1cf44f1ea.png" width="6px">
+                        <img src="https://m.smartcara.com/web/product/option_button/202105/0862794c02ec7f7e906e98d1cf44f1ea.png" width="6px">
+                        <img src="https://m.smartcara.com/web/product/option_button/202105/0862794c02ec7f7e906e98d1cf44f1ea.png" width="6px">
+                        <img src="https://m.smartcara.com/web/product/option_button/202105/0862794c02ec7f7e906e98d1cf44f1ea.png" width="6px">
+                        <img src="https://m.smartcara.com/web/product/option_button/202105/0862794c02ec7f7e906e98d1cf44f1ea.png" width="6px">
+                    </div>
+
+                    <span class="icon_below icon_click" style="margin-left:16px;">
+                        <img src="https://png.pngitem.com/pimgs/s/111-1119299_black-hollow-heart-icon-hd-png-download.png"
+                        width="30px;" height="30px;" onclick="change(this,1);">
+                    </span>
+                    <span class="icon_below">
+                        <button class="open_comment" style=" border:none; background-color:white;" onclick="comment_modal(0);">
+                            <img src="https://cdn-icons-png.flaticon.com/512/2/2043.png" width="30px">
+                        </button>
+                        <div class="modal_group" style="display:none;">
+                            <div class="modal_comment" id="group">
+                                <div class="modal_left" style="float:left;">
+                                    <!--photo change-->
+                                    <img src="<%=data[0].photo%>" width="800px" style="border-right:1px solid lightgray; position:relative;">
+                                </div>
+                                <div>
+                                    <span>
+                                        <img src="https://cdn2.iconfinder.com/data/icons/instagram-outline/19/11-512.png" 
+                                        width="60px" style="margin:10px; position:relative;">
+                                        <span style="font-weight:bold; position:relative; top:-35px;">
+                                            sejong_univ · 팔로잉
+                                        </span>
+                                    </span>
+                                    <hr style="position:relative; top:-10px; border: 1px lightgray solid;">
+                                    <div class="modal_right">
+                                        <div class="comment_modal_group">
+                                            <img src="https://cdn2.iconfinder.com/data/icons/instagram-outline/19/11-512.png" 
+                                            width="60px" style="margin:0px 10px; position:relative;">
+                                            <span style="position:relative; top:-35px;">
+                                                <b>
+                                                    sejong_univ
+                                                </b>
+                                                &nbsp;<%=data[0].contents%>
+                                            </span>
+                                            <br>
+                                            <div style="padding-left:85px; position:relative; top:-20px;">
+                                                <div>
+                                                    <%=data[0].long_contents%>
+                                                </div>
+                                                <br>
+                                                <div style="color:navy;">
+                                                    #세종대학교 #세종대
+                                                </div>
+                                                <br>
+                                                <div style="color:gray; font-size:14px;">
+                                                    <%=data[0].time%>분
+                                                </div>
+                                            </div>
+                                            <div class="show"> <!--댓글 submit 버튼 통해 함수 실행돼 댓글 생성되게 함. 내용 많으면 스크롤 생김-->
+                                                <!--여기에 댓글 추가됨-->
+                                                <%for(let i=0;i<comment.length;i++){%> <!--ejs에서 for문 실행-->
+                                                    <%if(comment[i].id===1){%> <!--ejs에서 if문 실행-->
+                                                        <div class="commentGroup">
+                                                            <img class="img" src="https://cdn2.iconfinder.com/data/icons/instagram-outline/19/11-512.png" width="60px">
+                                                            <img class="img_h" src="https://png.pngitem.com/pimgs/s/111-1119299_black-hollow-heart-icon-hd-png-download.png"
+                                                            width="12px;" height="12px;">
+                                                            <div class="text">
+                                                                <b>
+                                                                    <%=comment[i].comment_user%>&nbsp;
+                                                                </b>
+                                                                <%=comment[i].contents%>
+                                                            </div>
+                                                            <div class="time">
+                                                                <%=comment[i].time%>분 &nbsp;<b>답글 달기</b>
+                                                            </div>
+                                                        </div>
+                                                    <%}%>
+                                                <%}%>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="position:relative;">
+                                        <hr style="border-top: 2px lightgray solid; margin-bottom:20px;">
+                                        <div class="icon">
+                                            <span class="icon_below icon_click">
+                                                <img src="https://png.pngitem.com/pimgs/s/111-1119299_black-hollow-heart-icon-hd-png-download.png"
+                                                width="30px;" onclick="change(this,0);">
+                                            </span>
+                                            <span class="icon_below">
+                                                <img src="https://cdn-icons-png.flaticon.com/512/2/2043.png" width="30px">
+                                            </span>
+                                            <span class="icon_below" style="position:relative">
+                                                <img src="https://cdn-icons-png.flaticon.com/512/126/126536.png" width="30px;">
+                                            </span>
+                                            <span class="icon_below icon_click" style="float:right; margin-right:20px;">
+                                                <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" 
+                                                width="25px;" style="position:relative; top:-5px;" onclick="change(this);">
+                                            </span>
+                                        </div>
+                                        <div style="margin:5px 15px; line-height:30px;"> <!--line-height는 줄간격 조정-->
+                                            <strong> <!--좋아요 숫자 구현-->
+                                                좋아요 
+                                                <!--(댓글 modal)like_num change-->
+                                                <span class="number"><%=data[0].like_num%></span>개
+                                            </strong>
+                                            <div style="font-size:12px; color:gray;">
+                                                <%=data[0].time%>분 전
+                                            </div>
+                                        </div>
+                                        <hr style="border: solid 1px gainsboro; margin:15px 0px;">
+                                        <span style="float:left; margin:0px 15px;">
+                                            <img src="https://cdn-icons-png.flaticon.com/512/637/637651.png" width="25px;">
+                                        </span>
+                                        <form method="get" target="here"> <!--페이지 이동 없이 submit하기(iframe name이 here인 곳으로)--> <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+                                            <input type="text" class="comment comment_text" name="comment" placeholder="댓글 달기..."></input>
+                                            <input type="submit" value="게시" class="comment_send" onclick="make_comment(0);"></input>
+                                        </form>
+                                        <iframe name="here" style="display:none;"></iframe> <!--안보이게 처리-->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="close_group">
+                                <button class="close_comment">X</button>
+                            </div>
+                        </div>
+                        <!--script는 맨 아래에-->
+                    </span>
+                    <span class="icon_below">
+                        <img src="https://cdn-icons-png.flaticon.com/512/126/126536.png" width="30px;">
+                    </span>
+                    <span class="icon_below icon_click" style="float:right; margin-right:20px;">
+                        <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" width="25px;" onclick="change(this);">
+                    </span>
+                    <div style="margin:0px 15px; line-height:30px;"> <!--line-height는 줄간격 조정-->
+                        <strong>
+                            좋아요
+                            <!--like_num change-->
+                            <span class="number"><%=data[0].like_num%></span>개
+                            <br> sejong_univ
+                        </strong>
+                        <!--contents change-->
+                        <%=data[0].contents%>
+                        <span style="color:gray;">
+                            더 보기
+                        </span>
+                        <div style="font-size:12px; color:gray;">
+                            <%=data[0].time%>분 전
+                        </div>
+                    </div>
+                    <hr style="border: solid 1px gainsboro; margin:15px 0px;">
+                    <span style="float:left; margin:0px 15px;">
+                        <img src="https://cdn-icons-png.flaticon.com/512/637/637651.png" width="25px;">
+                    </span>
+                    <form method="post"> <!--action='/~~'(submit 하면 보낼 위치) 넣어야함-->
+                        <input type="text" class="comment" name="comment" placeholder="댓글 달기..."></input>
+                        <input type="submit" value="게시" class="comment_send"></input>
+                    </form>
+                </div>
+                
+                <!--복사해보기-->
+                <div id="clone_post"></div>
+
+                <!--두번째 게시물-->
+                <div class="post">
+                    <img src="https://cdn2.iconfinder.com/data/icons/instagram-outline/19/11-512.png" width="40px" 
+                    style="margin:7px 10px;float:left;"> <!--float 쓰면 왼쪽에 사진 위치, 오른쪽에 다른 것 위치 가능-->
+                    <span style="display:inline-block; margin:13px 0px; font-size:16px;"> <!--float 써서 글자 가운데 오도록 조정 가능-->
+                        sejong_univ
+                    </span>
+                    <button class="open" style="float:right; margin:15px; border:none; background-color:white;" onclick="dot_modal(3);"> <!--modal창 열 버튼-->
+                        <img src="https://cdn-icons-png.flaticon.com/512/60/60969.png" width="15px;">
+                    </button>
+                    <!--dot modal-->
+                    <div class="modal_wrapper" style="display:none;">
+                        <div class="modal">
+                            <div class="modal_sq" style="color:red; font-weight:bold;">
+                                신고
+                            </div>
+                            <div class="modal_sq" style="color:red; font-weight:bold;">
+                                팔로우 취소
+                            </div>
+                            <div class="modal_sq">
+                                게시물로 이동
+                            </div>
+                            <div class="modal_sq">
+                                공유 대상...
+                            </div>
+                            <div class="modal_sq">
+                                링크 복사
+                            </div>
+                            <div class="modal_sq">
+                                퍼가기
+                            </div>
+                            <div class="close_wrapper">
+                                <button class="close">취소</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--photo change-->
+                    <img src="<%=data[3].photo%>" width="600px;">
+
+                    <div style="text-align:center;">
+                        <img src="https://kr.seaicons.com/wp-content/uploads/2015/06/Circle-icon.png" width="7px">
+                        <img src="https://m.smartcara.com/web/product/option_button/202105/0862794c02ec7f7e906e98d1cf44f1ea.png" width="6px">
+                        <img src="https://m.smartcara.com/web/product/option_button/202105/0862794c02ec7f7e906e98d1cf44f1ea.png" width="6px">
+                        <img src="https://m.smartcara.com/web/product/option_button/202105/0862794c02ec7f7e906e98d1cf44f1ea.png" width="6px">
+                        <img src="https://m.smartcara.com/web/product/option_button/202105/0862794c02ec7f7e906e98d1cf44f1ea.png" width="6px">
+                        <img src="https://m.smartcara.com/web/product/option_button/202105/0862794c02ec7f7e906e98d1cf44f1ea.png" width="6px">
+                        <img src="https://m.smartcara.com/web/product/option_button/202105/0862794c02ec7f7e906e98d1cf44f1ea.png" width="6px">
+                        <img src="https://m.smartcara.com/web/product/option_button/202105/0862794c02ec7f7e906e98d1cf44f1ea.png" width="6px">
+                    </div>
+
+                    <span class="icon_below icon_click" style="margin-left:16px;">
+                        <img src="https://png.pngitem.com/pimgs/s/111-1119299_black-hollow-heart-icon-hd-png-download.png"
+                        width="30px;" height="30px;" onclick="change(this,7);">
+                    </span>
+                    <span class="icon_below">
+                        <button class="open_comment" style=" border:none; background-color:white;" onclick="comment_modal(3);">
+                            <img src="https://cdn-icons-png.flaticon.com/512/2/2043.png" width="30px">
+                        </button>
+                        <div class="modal_group" style="display:none;">
+                            <div class="modal_comment" id="group">
+                                <div class="modal_left" style="float:left;">
+                                    <!--photo change-->
+                                    <img src="<%=data[3].photo%>" width="800px" style="border-right:1px solid lightgray; position:relative;">
+                                </div>
+                                <div>
+                                    <span>
+                                        <img src="https://cdn2.iconfinder.com/data/icons/instagram-outline/19/11-512.png" 
+                                        width="60px" style="margin:10px; position:relative;">
+                                        <span style="font-weight:bold; position:relative; top:-35px;">
+                                            sejong_univ · 팔로잉
+                                        </span>
+                                    </span>
+                                    <hr style="position:relative; top:-10px; border: 1px lightgray solid;">
+                                    <div class="modal_right">
+                                        <div class="comment_modal_group">
+                                            <img src="https://cdn2.iconfinder.com/data/icons/instagram-outline/19/11-512.png" 
+                                            width="60px" style="margin:0px 10px; position:relative;">
+                                            <span style="position:relative; top:-35px;">
+                                                <b>
+                                                    sejong_univ
+                                                </b>
+                                                &nbsp;<%=data[3].contents%>
+                                            </span>
+                                            <br>
+                                            <div style="padding-left:85px; position:relative; top:-20px;">
+                                                <div>
+                                                    <%=data[3].long_contents%>
+                                                </div>
+                                                <br>
+                                                <div style="color:navy;">
+                                                    #세종대학교 #세종대
+                                                </div>
+                                                <br>
+                                                <div style="color:gray; font-size:14px;">
+                                                    <%=data[3].time%>분
+                                                </div>
+                                            </div>
+                                            <div class="show"> <!--댓글 submit 버튼 통해 함수 실행돼 댓글 생성되게 함-->
+                                                <!--여기에 댓글 추가됨-->
+                                                <%for(let i=0;i<comment.length;i++){%> <!--ejs에서 for문 실행-->
+                                                    <%if(comment[i].id===4){%> <!--ejs에서 if문 실행-->
+                                                        <div class="commentGroup">
+                                                            <img class="img" src="https://cdn2.iconfinder.com/data/icons/instagram-outline/19/11-512.png" width="60px">
+                                                            <img class="img_h" src="https://png.pngitem.com/pimgs/s/111-1119299_black-hollow-heart-icon-hd-png-download.png"
+                                                            width="12px;" height="12px;">
+                                                            <div class="text">
+                                                                <b>
+                                                                    <%=comment[i].comment_user%>&nbsp;
+                                                                </b>
+                                                                <%=comment[i].contents%>
+                                                            </div>
+                                                            <div class="time">
+                                                                <%=comment[i].time%>분 &nbsp;<b>답글 달기</b>
+                                                            </div>
+                                                        </div>
+                                                    <%}%>
+                                                <%}%>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="position:relative;">
+                                        <hr style="border-top: 2px lightgray solid; margin-bottom:20px;">
+                                        <div class="icon">
+                                            <span class="icon_below icon_click">
+                                                <img src="https://png.pngitem.com/pimgs/s/111-1119299_black-hollow-heart-icon-hd-png-download.png"
+                                                width="30px;" onclick="change(this,6);">
+                                            </span>
+                                            <span class="icon_below">
+                                                <img src="https://cdn-icons-png.flaticon.com/512/2/2043.png" width="30px">
+                                            </span>
+                                            <span class="icon_below" style="position:relative">
+                                                <img src="https://cdn-icons-png.flaticon.com/512/126/126536.png" width="30px;">
+                                            </span>
+                                            <span class="icon_below icon_click" style="float:right; margin-right:20px;">
+                                                <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" 
+                                                width="25px;" style="position:relative; top:-5px;" onclick="change(this);">
+                                            </span>
+                                        </div>
+                                        <div style="margin:5px 15px; line-height:30px;"> <!--line-height는 줄간격 조정-->
+                                            <strong> <!--좋아요 숫자 구현-->
+                                                좋아요 
+                                                <!--(댓글 modal)like_num change-->
+                                                <span class="number"><%=data[3].like_num%></span>개
+                                            </strong>
+                                            <div style="font-size:12px; color:gray;">
+                                                <%=data[3].time%>분 전
+                                            </div>
+                                        </div>
+                                        <hr style="border: solid 1px gainsboro; margin:15px 0px;">
+                                        <span style="float:left; margin:0px 15px;">
+                                            <img src="https://cdn-icons-png.flaticon.com/512/637/637651.png" width="25px;">
+                                        </span>
+                                        <form method="get" target="here"> <!--페이지 이동 없이 submit하기(iframe name이 here인 곳으로)-->
+                                            <input type="text" class="comment comment_text" name="comment" placeholder="댓글 달기..."></input>
+                                            <input type="submit" value="게시" class="comment_send" onclick="make_comment(3);"></input>
+                                        </form>
+                                        <iframe name="here" style="display:none;"></iframe> <!--안보이게 처리-->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="close_group">
+                                <button class="close_comment">X</button>
+                            </div>
+                        </div>
+                    </span>
+                    <span class="icon_below">
+                        <img src="https://cdn-icons-png.flaticon.com/512/126/126536.png" width="30px;">
+                    </span>
+                    <span class="icon_below icon_click" style="float:right; margin-right:20px;">
+                        <img src="https://cdn-icons-png.flaticon.com/512/6165/6165217.png" width="25px;" onclick="change(this);">
+                    </span>
+                    <div style="margin:0px 15px; line-height:30px;"> <!--line-height는 줄간격 조정-->
+                        <strong>
+                            좋아요
+                            <!--like_num change-->
+                            <span class="number"><%=data[3].like_num%></span>개
+                            <br> sejong_univ
+                        </strong>
+                        <!--contents change-->
+                        <%=data[3].contents%>
+                        <span style="color:gray;">
+                            더 보기
+                        </span>
+                        <div style="font-size:12px; color:gray;">
+                            <%=data[3].time%>분 전
+                        </div>
+                    </div>
+                    <hr style="border: solid 1px gainsboro; margin:15px 0px;">
+                    <span style="float:left; margin:0px 15px;">
+                        <img src="https://cdn-icons-png.flaticon.com/512/637/637651.png" width="25px;">
+                    </span>
+                    <form method="post"> <!--action='/~~'(submit 하면 보낼 위치) 넣어야함-->
+                        <input type="text" class="comment" name="comment" placeholder="댓글 달기..."></input>
+                        <input type="submit" value="게시" class="comment_send"></input>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script src="/page.js"></script> <!--index.js에서 사용하려고 page.js앞에 / 붙여줌 -->
+    </body>
+</html>
