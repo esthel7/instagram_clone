@@ -1,6 +1,8 @@
 # ✨Instagram_clone
+```git
 ⚡ 2022.03 ~ 2022.06
-<br /><br />
+```
+<br />
 
 ## 1️⃣ Login<br/>
 ```git
